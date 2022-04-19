@@ -15,7 +15,13 @@ export default function App() {
               <Sidebar jsonData={jsonData}/>
           </div>
           <div className='col-lg-9'>
-          <Modal>это модальное окно</Modal>
+              <Modal 
+                title={'Это заголовок модала'}
+                subtitle={'Это подзаголовок модала'}
+                name={true}
+                nameDescr={'Введите тут свое имя'}
+                namePlaceholder={'Иван'}
+              />
               <TrajectoryBanner />
               <SeminarsList jsonData={jsonData} />
           </div>

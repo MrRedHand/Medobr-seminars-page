@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types';
 import st from './input.module.css'
 
 const Input = (props) => {
+
+
+
     return (
         <label className={`${props.labelClass}`}>
             <span 
@@ -14,7 +17,7 @@ const Input = (props) => {
                 placeholder={`${props.placeholder}`} 
                 type={`${props.type}`} 
                 name={`${props.name}`} 
-                value={`${props.value}`} />
+                />
         </label>
     )
 }

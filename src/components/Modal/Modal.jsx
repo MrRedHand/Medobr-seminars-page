@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import st from './modal.module.css';
 import Input from '../input/input';
 
@@ -50,13 +51,19 @@ const Modal = (props) => {
             <span className={st.modal__backdrop} onClick={() => closeModal()}></span>
             <div className={st.modal__content}>
                 <div className="modal__header">
-                    <p>{props.children}</p>
-                    
+                    <p>{props.title}</p>
+                    <p>{props.subtitle}</p>
                     <button onClick={() => closeModal()}>&times;</button> 
                 </div>
                 <div className="modal__body">
-                    тут тело
-                    <Input type='text' spanDescription='Ваше имя'/>
+                    {
+                        props.name === true ? 
+                        <Input type='text' 
+                        spanDescription={props.nameDescr}
+                        placeholder={props.namePlaceholder}
+                        /> : ''
+                    }
+                    
                 </div>
                 <div className="modal__footer">
                     тут футер
@@ -65,6 +72,14 @@ const Modal = (props) => {
         </section>
         </>
     )
+}
+
+Modal.propTypes = {
+    title: PropTypes.string,
+    subtitle: PropTypes.string,
+    name: PropTypes.bool,
+    nameDescr: PropTypes.string,
+    namePlaceholder: PropTypes.string,
 }
 
 export default Modal;
