@@ -36,14 +36,6 @@ const Modal = (props) => {
                 closeModal()
             }
         });
-
-        // window.addEventListener('click', (e) => {
-        //     if (e.target !== modalRef && current.active === true) {
-        //         // Ниже код, который нужно выполнить при срабатывании события.
-        //         closeModal()
-        //     }
-        // });
-
     })
 
     
@@ -55,6 +47,7 @@ const Modal = (props) => {
             <button onClick={() => showModal()}>показать</button>
         </div>
         <section className={`${st.modal} ${current.active === true ? st.show : st.hide}`}>
+            <span className={st.modal__backdrop} onClick={() => closeModal()}></span>
             <div className={st.modal__content}>
                 <div className="modal__header">
                     <p>{props.children}</p>
