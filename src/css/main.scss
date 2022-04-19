@@ -9,6 +9,11 @@ html, body {
     color: $body_color; 
 }
 
+.modal-active {
+    overflow: hidden;
+    margin-right: 15px;
+}
+
 .cta-btn {
     background: #72E77A;
     border-radius: 5px;
