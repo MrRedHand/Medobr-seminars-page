@@ -5,17 +5,17 @@
     background-color: rgba(0,0,0,.6);
     left: 0;
     top: 0;
-    transition: opacity ease-in 0.12s;
-}
-
-.modal.hide {
-    visibility: hidden;
-    opacity: 0;
+    transition: all ease-in 0.12s;
 }
 
 .modal.show {
     visibility: visible;
     opacity: 1;
+}
+
+.modal.hide {
+    visibility: hidden;
+    opacity: 0;
 }
 
 .modal__content {

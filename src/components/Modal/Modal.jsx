@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import st from './modal.module.css';
+import Input from '../input/input';
 
 const Modal = (props) => {
 
@@ -56,10 +57,13 @@ const Modal = (props) => {
         <section className={`${st.modal} ${current.active === true ? st.show : st.hide}`}>
             <div className={st.modal__content}>
                 <div className="modal__header">
-                    {props.children} 
+                    <p>{props.children}</p>
+                    
+                    <button onClick={() => closeModal()}>&times;</button> 
                 </div>
                 <div className="modal__body">
                     тут тело
+                    <Input type='text' spanDescription='Ваше имя'/>
                 </div>
                 <div className="modal__footer">
                     тут футер
