@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap-reboot.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.scss';
 import './js/main'
-import App from './App';
+import App from './components/app/app';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);

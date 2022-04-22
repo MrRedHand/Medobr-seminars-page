@@ -1,7 +1,7 @@
 import React from "react";
-import SeminarTag from "./SeminarTag";
+import SeminarTag from "../seminar-tag/seminar-tag";
 
-export default function SecondarySeminarItem(props) {
+export default function SeminarItemSecondary(props) {
     return (
         <div className="seminar-item secondary">
             <div className="seminar-item__body">

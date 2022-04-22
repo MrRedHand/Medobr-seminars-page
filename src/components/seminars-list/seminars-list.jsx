@@ -1,7 +1,6 @@
 import React from "react";
-import BaseSeminarItem from "./BaseSeminarItem";
-import SecondarySeminarItem from "./SecondarySeminarItem";
-import SkeletonSeminarItem from "./SkeletonSeminarItem";
+import SeminarItemBase from "../seminar-item-base/seminar-item-base";
+import SeminarItemSecondary from "../seminar-item-secondary/seminar-item-secondary";
 
 
 
@@ -33,13 +32,11 @@ export default function SeminarsList(props) {
             <div className="seminars-list__wrap">
                 <div className={`${current.active === 'one' ? 'active' : ''} seminars-list__tab`}>
                     <div className="base-seminars">
-                        <SkeletonSeminarItem />
-                        <SkeletonSeminarItem />
 
                         {
                             //отображаю  10 семинаров
                             props.jsonData.slice(0, seminarsToLoad).map(elem => {
-                                return <BaseSeminarItem 
+                                return <SeminarItemBase
                                         key={elem.ID}
                                         date={elem.PROPERTY_DATE_FROM_VALUE}
                                         url={elem.DETAIL_PAGE_URL}
@@ -57,15 +54,15 @@ export default function SeminarsList(props) {
                     <div className="secondary-seminars">
                         <div className="">Заочные семинары</div>
                         
-                        <SecondarySeminarItem />
+                        <SeminarItemSecondary />
 
-                        <SecondarySeminarItem />
+                        <SeminarItemSecondary />
 
-                        <SecondarySeminarItem />
+                        <SeminarItemSecondary />
 
-                        <SecondarySeminarItem />
+                        <SeminarItemSecondary />
 
-                        <SecondarySeminarItem />
+                        <SeminarItemSecondary />
                     </div>   
                 </div>
                 <div className={`${current.active === 'two' ? 'active' : ''}`}>
