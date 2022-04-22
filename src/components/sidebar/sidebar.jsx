@@ -1,6 +1,6 @@
 import React from "react";
 import MainSearchInput from "../main-search-input/main-search-input";
-import CatsInput from "./FilterInput";
+import Input from "../input/input";
 import SkeletonFilterItem from "../skeleton-filter-item"
 
 export default function Sidebar(props) {
@@ -32,7 +32,7 @@ export default function Sidebar(props) {
                         
                         {
                             catsArray.map(cat => {
-                                return <CatsInput  key={cat} value={cat} />
+                                return <Input  key={cat} value={cat} func={props.testFunc}/>
                             })
                         }
                     

@@ -5,9 +5,8 @@ import st from './input.module.css'
 const Input = (props) => {
 
 
-
     return (
-        <label className={`${props.labelClass}`}>
+        <label className={`${props.labelClass}`} onClick={() => console.log('asdasd')}>
             <span 
                 className={`${props.spanClass}`}>
                     {props.spanDescription}
