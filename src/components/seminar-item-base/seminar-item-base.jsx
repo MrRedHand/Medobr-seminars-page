@@ -1,7 +1,8 @@
 import React from "react";
-import SeminarTag from "./SeminarTag";
+import st from './seminar-item-base.module.css';
 
-export default function BaseSeminarItem(props) {
+
+const BaseSeminarItem = (props) => {
     return(
         <div className="seminar-item">
             <div className="seminar-item__header">
@@ -60,3 +61,6 @@ export default function BaseSeminarItem(props) {
         </div>
     ) 
 }
+
+
+export default BaseSeminarItem

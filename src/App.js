@@ -1,11 +1,13 @@
 import React from 'react';
-import Sidebar from './components/Sidebar';
+import Sidebar from './components/sidebar/sidebar';
 import SeminarsList from './components/SeminarsList';
-import TrajectoryBanner from "./components/TrajectoryBanner";
+import TrajectoryBanner from "./components/trajectory-banner/trajectory-banner";
 import JsonFetch from "./components/JsonFetch";
 import Modal from './components/Modal/Modal';
 
-const jsonData = JsonFetch()
+const jsonData = async = await JsonFetch()
+
+console.log(jsonData)
 
 export default function App() {
   return (
@@ -15,13 +17,6 @@ export default function App() {
               <Sidebar jsonData={jsonData}/>
           </div>
           <div className='col-lg-9'>
-              <Modal 
-                title={'Это заголовок модала'}
-                subtitle={'Это подзаголовок модала'}
-                name={true}
-                nameDescr={'Введите тут свое имя'}
-                namePlaceholder={'Иван'}
-              />
               <TrajectoryBanner />
               <SeminarsList jsonData={jsonData} />
           </div>

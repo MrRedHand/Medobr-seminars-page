@@ -1,7 +1,7 @@
 import React from "react";
-import MainSearchInput from "./MainSearchInput";
+import MainSearchInput from "../main-search-input/main-search-input";
 import CatsInput from "./FilterInput";
-import SkeletonFilterItem from "./SkeletonFilterItem"
+import SkeletonFilterItem from "../skeleton-filter-item"
 
 export default function Sidebar(props) {
     

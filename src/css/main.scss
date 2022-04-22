@@ -408,6 +408,7 @@ html, body {
     display: flex;
     flex-wrap: wrap;
     position: relative;
+    z-index: 1;
 
     &:hover {
         border-color: #535353;
@@ -420,6 +421,7 @@ html, body {
         display: flex;
         flex-direction: column;
         width: 100%;
+        z-index: 1;
     }
 
     &__seminar-avatar {
