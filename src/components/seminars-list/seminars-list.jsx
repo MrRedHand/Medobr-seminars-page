@@ -7,7 +7,7 @@ import SeminarItemSecondary from "../seminar-item-secondary/seminar-item-seconda
 
 const seminarsToLoad = 10;
 
-export default function SeminarsList(props) {
+export default function SeminarsList({data}) {
 
     const [current, setTab] = React.useState({
         active : 'one'
@@ -35,17 +35,8 @@ export default function SeminarsList(props) {
 
                         {
                             //отображаю  10 семинаров
-                            props.jsonData.slice(0, seminarsToLoad).map(elem => {
-                                return <SeminarItemBase
-                                        key={elem.ID}
-                                        date={elem.PROPERTY_DATE_FROM_VALUE}
-                                        url={elem.DETAIL_PAGE_URL}
-                                        pic={elem.PREVIEW_PICTURE_SRC}
-                                        title={elem.NAME}
-                                        categories={elem.PROPERTY_CATEGORY_VALUE}
-                                        lectors={elem.PROPERTY_LECTOR_VALUE}
-                                        nmovalue={elem.PROPERTY_NMO_AMOUNT_VALUE}
-                                        />
+                            data.slice(0, seminarsToLoad).map(elem => {
+                                return <SeminarItemBase key={elem.id} {...elem}/>
                             })
                         }
                         <button className="seminar-list__load-more btn">Загрузить еще семинаров</button>

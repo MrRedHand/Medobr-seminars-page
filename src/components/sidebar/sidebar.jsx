@@ -1,20 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import MainSearchInput from "../main-search-input/main-search-input";
 import Input from "../input/input";
 import SkeletonFilterItem from "../skeleton-filter-item"
 
-export default function Sidebar(props) {
-    
-    //Ищу все категории и сортирую ///////////
-    let catsArray = []
-    props.jsonData.map(elem => {
-        elem.PROPERTY_CATEGORY_VALUE.forEach(cat => {
-            if (cat != null) catsArray.push(cat)
-        })
-    })
+export default function Sidebar({cats, types, nmoSpecsVmp, nmoSpecsSmp, dates}) {
 
-    catsArray = [...new Set(catsArray)].sort()
-    /////////////////////////////////////////
+    
     return(
         <div className="sidebar-filters">
             <div className="sidebar-filters__heading">Семинары</div>
@@ -31,8 +22,8 @@ export default function Sidebar(props) {
                     <div className="filter__labels-wrapper">
                         
                         {
-                            catsArray.map(cat => {
-                                return <Input  key={cat} value={cat} func={props.testFunc}/>
+                            cats.map(cat => {
+                                return <Input key={cat.id} id={cat.id} value={cat.name}/>
                             })
                         }
                     
@@ -66,14 +57,18 @@ export default function Sidebar(props) {
                     <input className="filter__search-field form-control" type="search" name="" id="specs-search" data-search-target="#filter-specs"/>
                     <div className="filter__labels-wrapper">
                     <div className="filter__labels-type-wrap active" id="vmp-tab" data-tab-content=""><b>Высшее медицинское образование</b>
-                        <label className="filter__label">
-                            <input type="checkbox"/><span className="span-value">Авиационная и космическая медицина</span>
-                        </label>
+                        {
+                            nmoSpecsVmp.map(cat => {
+                                return <Input key={cat.id} id={cat.id} value={cat.name}/>
+                            })
+                        }
                     </div>
                     <div className="filter__labels-type-wrap active" id="smp-tab" data-tab-content="">   <b>Среднее медицинское образование</b>
-                        <label className="filter__label">
-                            <input type="checkbox"/><span className="span-value">Косметология</span>
-                        </label>
+                        {
+                            nmoSpecsSmp.map(cat => {
+                                return <Input key={cat.id} id={cat.id} value={cat.name}/>
+                            })
+                        }
                     </div>
                     </div>
                     <button>

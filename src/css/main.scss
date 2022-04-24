@@ -409,9 +409,10 @@ html, body {
     flex-wrap: wrap;
     position: relative;
     z-index: 1;
+    transition: background ease-in 0.15s;
 
     &:hover {
-        border-color: #535353;
+        background: rgb(253, 253, 253);
     }
 
     &__right-col {

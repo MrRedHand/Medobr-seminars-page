@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import st from './modal.module.css';
 import Input from '../input/input';
 
-const Modal = (props) => {
+const Modal = ({activeState}) => {
 
     const [current, toggleModal] = React.useState({
-        active : true
+        active : activeState
     })
 
     const closeModal = () => {
@@ -25,8 +25,6 @@ const Modal = (props) => {
 
     const body = document.querySelector('body')
 
-    const modalRef = React.createRef();
-
     React.useEffect(() => {
         current.active === true ? 
         body.classList.add('modal-active') : 
@@ -37,7 +35,7 @@ const Modal = (props) => {
                 closeModal()
             }
         });
-    })
+    }, [])
 
     
 
