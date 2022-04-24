@@ -7,7 +7,7 @@ export default function App() {
 
   const data = require('../../data/seminars999.json')
 
-  console.log('FullArray', data)
+  console.log('FullArray', data) 
 
   // const [dataParams, setDataState] = useState({
   //   url : '../data/seminars999.json',
