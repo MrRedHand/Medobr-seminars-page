@@ -1,16 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MainSearchInput from "../main-search-input/main-search-input";
 import Input from "../input/input";
 import SkeletonFilterItem from "../skeleton-filter-item"
 
 export default function Sidebar({cats, types, nmoSpecsVmp, nmoSpecsSmp, dates}) {
 
+    const someRef = React.createRef()
+
+    useEffect(() => {
+
+      const si = document.querySelector('.sec')
+      si.addEventListener('onchange', console.log('in'))
+      console.log(si)
+      console.log(someRef)
+    })
+    
     
     return(
         <div className="sidebar-filters">
             <div className="sidebar-filters__heading">Семинары</div>
-            
-            <MainSearchInput />
+            <input type="search" name="" id="" ref={someRef} className='sec'/>
+            {/* <MainSearchInput /> */}
 
             <div id="filters-wrap">
 
