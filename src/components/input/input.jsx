@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
-import st from './input.module.css'
+import st from './input.module.scss'
 
 const Input = ({id, value}) => {
 
 
     return (
-        <label className="filter__label" data-category-id={id}>
-            <input type="checkbox"/><span className="span-value">{value}</span>
+        <label className={st.filter__label} data-category-id={id}>
+            <input type="checkbox"/><span className={st['span-value']}>{value}</span>
         </label>
     )
 }

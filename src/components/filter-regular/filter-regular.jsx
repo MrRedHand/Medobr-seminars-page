@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, createRef } from 'react'
+import st from './filter-regular.module.scss'
 import Input from '../input/input'
 
 const FilterRegular = ({data}) => {
@@ -21,10 +22,10 @@ const FilterRegular = ({data}) => {
 
 
     return (
-        <div className={`filter ${fold ? 'open' : ''}`} id="filter-cats">
-            <div className="filter__heading">Категории</div>
-            <input className="filter__search-field form-control" type="search" name="" id="cat-search" data-search-target="#filter-cats"/>
-            <div className="filter__labels-wrapper" ref={listRef}>
+        <div className={`${st.filter} ${fold ? 'open' : 'closed'}`} id="filter-cats">
+            <div className={st.filter__heading}>Категории</div>
+            <input className={`${st['filter__search-field']} form-control`} type="search" name="" id="cat-search" data-search-target="#filter-cats"/>
+            <div className={st['filter__labels-wrapper']} ref={listRef}>
                 
                 {
                     data.map(cat => {
