@@ -5,6 +5,7 @@ import Input from '../input/input'
 const FilterRegular = ({data}) => {
 
     const listRef = createRef();
+    const searchRef = createRef();
 
     const [fold, setFold] = useState(false)
 
@@ -20,11 +21,21 @@ const FilterRegular = ({data}) => {
         })
     }, [])
 
+    useEffect(() => {
+
+        searchRef.current.addEventListener('input',() => searchIn());
+
+        function searchIn() {
+            console.log(searchRef.current.value)
+        }
+
+    }, [])
+
 
     return (
         <div className={`${st.filter} ${fold ? 'open' : 'closed'}`} id="filter-cats">
             <div className={st.filter__heading}>Категории</div>
-            <input className={`${st['filter__search-field']} form-control`} type="search" name="" id="cat-search" data-search-target="#filter-cats"/>
+            <input className={`${st['filter__search-field']} form-control`} type="search" name="" id="cat-search" data-search-target="#filter-cats" ref={searchRef}/>
             <div className={st['filter__labels-wrapper']} ref={listRef}>
                 
                 {
@@ -35,7 +46,11 @@ const FilterRegular = ({data}) => {
             
             </div>
             <button onClick={() => toggleFold()}>
-                <span className="folded-btn">Показать всё</span><span className="unfolded-btn">Свернуть</span>
+                {
+                    fold 
+                    ? <span>Свернуть</span>
+                    : <span>Показать всё</span>
+                }
             </button>
         </div>
     )
