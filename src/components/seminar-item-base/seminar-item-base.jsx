@@ -80,7 +80,7 @@ const SeminarItemBase = (props) => {
             </div>
             <div className="seminar-item__right-col">
                 <div className="seminar-item__seminar-avatar">
-                    {/* <img src={props.pic} alt="" />  */}
+                    <img src={`https://medobr.com${props.imgLink}`} alt="" /> 
                 </div>
                 <button className="seminar-item__call-me-btn btn cta-btn">Оставить заявку</button>
             </div>

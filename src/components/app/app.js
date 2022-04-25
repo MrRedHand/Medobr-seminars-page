@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from '../sidebar/sidebar';
 import SeminarsList from '../seminars-list/seminars-list';
 import TrajectoryBanner from "../trajectory-banner/trajectory-banner";
+import Modal from '../modal/modal';
 
 export default function App() {
 
@@ -65,34 +66,28 @@ export default function App() {
     })
     
     //Ищу все НМО-специальности ВМП
-    data.map(elem => {
-      if (elem.nmoSpecialties.length !== 0) {
-        if (elem.nmoSpecialties.vmp != null && elem.nmoSpecialties.vmp.length !== 0) {
-          elem.nmoSpecialties.vmp.map(innerElem => {
-            //удаляю approvedStatus, чтобы не мешался
-            delete innerElem.approvedStatus
-            nmoVmpSpecsArray = [...nmoVmpSpecsArray, innerElem]
-          })
-        }
+    data.map(elem => {  
 
-        if (elem.nmoSpecialties.smp != null && elem.nmoSpecialties.smp.length !== 0) {
-          elem.nmoSpecialties.smp.map(innerElem => {
-            //удаляю approvedStatus, чтобы не мешался
-            delete innerElem.approvedStatus
-            nmoSmpSpecsArray = [...nmoSmpSpecsArray, innerElem]
-          })
-        }
-      }
+      if (elem.nmoSpecialties === null || elem.nmoSpecialties === undefined) return
+      
+      elem.nmoSpecialties.vmp
+      && elem.nmoSpecialties.vmp.specs
+      && elem.nmoSpecialties.vmp.specs.map(innerElem => {
+        nmoVmpSpecsArray = [...nmoVmpSpecsArray, innerElem]
+      })
+
+      elem.nmoSpecialties.smp
+      && elem.nmoSpecialties.smp.specs
+      && elem.nmoSpecialties.smp.specs.map(innerElem => {
+        nmoSmpSpecsArray = [...nmoSmpSpecsArray, innerElem]
+      })
+
     })
 
     //Удаляю все дубли категорий из массива
     catsArray = removeDoubles(catsArray)
     nmoVmpSpecsArray = removeDoubles(nmoVmpSpecsArray)
     nmoSmpSpecsArray = removeDoubles(nmoSmpSpecsArray)
-
-    console.log('catsArray', catsArray)
-    console.log('NmoVMP', nmoVmpSpecsArray)
-    console.log('NmoSMP', nmoSmpSpecsArray)
 
     //Метод удаления копий из массивов
     function removeDoubles(arr) {
@@ -119,6 +114,8 @@ export default function App() {
               <SeminarsList data={data} />
           </div>
         </div>
+
+        <Modal activeState={false}/>
     </div>
   )
 }

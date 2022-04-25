@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import st from './modal.module.css';
 import Input from '../input/input';
 
 const Modal = ({activeState}) => {
 
-    const [current, toggleModal] = React.useState({
+    const [current, toggleModal] = useState({
         active : activeState
     })
 
@@ -25,7 +24,7 @@ const Modal = ({activeState}) => {
 
     const body = document.querySelector('body')
 
-    React.useEffect(() => {
+    useEffect(() => {
         current.active === true ? 
         body.classList.add('modal-active') : 
         body.classList.remove('modal-active')
@@ -49,18 +48,11 @@ const Modal = ({activeState}) => {
             <span className={st.modal__backdrop} onClick={() => closeModal()}></span>
             <div className={st.modal__content}>
                 <div className="modal__header">
-                    <p>{props.title}</p>
-                    <p>{props.subtitle}</p>
+                    <p></p>
+                    <p></p>
                     <button onClick={() => closeModal()}>&times;</button> 
                 </div>
                 <div className="modal__body">
-                    {
-                        props.name === true ? 
-                        <Input type='text' 
-                        spanDescription={props.nameDescr}
-                        placeholder={props.namePlaceholder}
-                        /> : ''
-                    }
                     
                 </div>
                 <div className="modal__footer">
@@ -70,14 +62,6 @@ const Modal = ({activeState}) => {
         </section>
         </>
     )
-}
-
-Modal.propTypes = {
-    title: PropTypes.string,
-    subtitle: PropTypes.string,
-    name: PropTypes.bool,
-    nameDescr: PropTypes.string,
-    namePlaceholder: PropTypes.string,
 }
 
 export default Modal;

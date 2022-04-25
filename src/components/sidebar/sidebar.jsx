@@ -2,44 +2,23 @@ import React, { useState, useEffect } from "react";
 import MainSearchInput from "../main-search-input/main-search-input";
 import Input from "../input/input";
 import SkeletonFilterItem from "../skeleton-filter-item"
+import FilterRegular from "../filter-regular/filter-regular";
 
 export default function Sidebar({cats, types, nmoSpecsVmp, nmoSpecsSmp, dates}) {
 
-    const someRef = React.createRef()
-
-    useEffect(() => {
-
-      const si = document.querySelector('.sec')
-      si.addEventListener('onchange', console.log('in'))
-      console.log(si)
-      console.log(someRef)
-    })
     
     
     return(
         <div className="sidebar-filters">
             <div className="sidebar-filters__heading">Семинары</div>
-            <input type="search" name="" id="" ref={someRef} className='sec'/>
+            <input type="search" name="" id=""/>
             {/* <MainSearchInput /> */}
 
             <div id="filters-wrap">
 
                 <SkeletonFilterItem />
 
-                <div className="filter" id="filter-cats">
-                    <div className="filter__heading">Категории</div>
-                    <input className="filter__search-field form-control" type="search" name="" id="cat-search" data-search-target="#filter-cats"/>
-                    <div className="filter__labels-wrapper">
-                        
-                        {
-                            cats.map(cat => {
-                                return <Input key={cat.id} id={cat.id} value={cat.name}/>
-                            })
-                        }
-                    
-                    </div>
-                    <button><span className="folded-btn">Показать всё</span><span className="unfolded-btn">Свернуть</span></button>
-                </div>
+                <FilterRegular data={cats}/>
 
 
                 <div className="filter" id="filter-types">
