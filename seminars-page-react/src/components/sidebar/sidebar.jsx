@@ -3,6 +3,7 @@ import MainSearchInput from "../main-search-input/main-search-input";
 import Input from "../input/input";
 import SkeletonFilterItem from "../skeleton-filter-item"
 import { SeminarsContext } from "../../services/seminarsContext";
+import Filter from "../filter/filter";
 
 export default function Sidebar({cats, types, nmoSpecsVmp, nmoSpecsSmp, dates}) {
 
@@ -29,7 +30,9 @@ export default function Sidebar({cats, types, nmoSpecsVmp, nmoSpecsSmp, dates}) 
 
                 <SkeletonFilterItem />
 
-                <div className="filter" id="filter-cats">
+                <Filter shouldFold={true}/>
+
+                {/* <div className="filter" id="filter-cats">
                     <div className="filter__heading">Категории</div>
                     <input className="filter__search-field form-control" type="search" name="" id="cat-search" data-search-target="#filter-cats"/>
                     <div className="filter__labels-wrapper">
@@ -42,7 +45,7 @@ export default function Sidebar({cats, types, nmoSpecsVmp, nmoSpecsSmp, dates}) 
                     
                     </div>
                     <button><span className="folded-btn">Показать всё</span><span className="unfolded-btn">Свернуть</span></button>
-                </div>
+                </div> */}
 
 
                 <div className="filter" id="filter-types">
