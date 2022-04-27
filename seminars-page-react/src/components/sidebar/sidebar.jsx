@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import MainSearchInput from "../main-search-input/main-search-input";
 import Input from "../input/input";
 import SkeletonFilterItem from "../skeleton-filter-item"
+import { SeminarsContext } from "../../services/seminarsContext";
 
 export default function Sidebar({cats, types, nmoSpecsVmp, nmoSpecsSmp, dates}) {
+
+    const contextData = useContext(SeminarsContext)
 
     const someRef = React.createRef()
 
@@ -32,7 +35,7 @@ export default function Sidebar({cats, types, nmoSpecsVmp, nmoSpecsSmp, dates}) 
                     <div className="filter__labels-wrapper">
                         
                         {
-                            cats.map(cat => {
+                            contextData.cats.map(cat => {
                                 return <Input key={cat.id} id={cat.id} value={cat.name}/>
                             })
                         }
@@ -68,14 +71,14 @@ export default function Sidebar({cats, types, nmoSpecsVmp, nmoSpecsSmp, dates}) 
                     <div className="filter__labels-wrapper">
                     <div className="filter__labels-type-wrap active" id="vmp-tab" data-tab-content=""><b>Высшее медицинское образование</b>
                         {
-                            nmoSpecsVmp.map(cat => {
+                            contextData.vmp.map(cat => {
                                 return <Input key={cat.id} id={cat.id} value={cat.name}/>
                             })
                         }
                     </div>
                     <div className="filter__labels-type-wrap active" id="smp-tab" data-tab-content="">   <b>Среднее медицинское образование</b>
                         {
-                            nmoSpecsSmp.map(cat => {
+                            contextData.smp.map(cat => {
                                 return <Input key={cat.id} id={cat.id} value={cat.name}/>
                             })
                         }

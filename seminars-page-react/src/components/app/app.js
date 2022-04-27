@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Sidebar from '../sidebar/sidebar';
 import SeminarsList from '../seminars-list/seminars-list';
 import TrajectoryBanner from "../trajectory-banner/trajectory-banner";
+import { SeminarsContext } from '../../services/seminarsContext';
 
 export default function App() {
 
   const data = require('../../data/seminars999.json')
-
-  console.log('FullArray', data) 
 
   // const [dataParams, setDataState] = useState({
   //   url : '../data/seminars999.json',
@@ -90,9 +89,12 @@ export default function App() {
     nmoVmpSpecsArray = removeDoubles(nmoVmpSpecsArray)
     nmoSmpSpecsArray = removeDoubles(nmoSmpSpecsArray)
 
-    console.log('catsArray', catsArray)
-    console.log('NmoVMP', nmoVmpSpecsArray)
-    console.log('NmoSMP', nmoSmpSpecsArray)
+    const contextData = {
+      data : data,
+      cats : catsArray, 
+      vmp : nmoVmpSpecsArray,
+      smp : nmoSmpSpecsArray,
+    }
 
     //Метод удаления копий из массивов
     function removeDoubles(arr) {
@@ -110,15 +112,17 @@ export default function App() {
 
   return (
     <div className="container seminars-list-page">
+      <SeminarsContext.Provider value={contextData}>  
         <div className='row'>
           <div className='col-lg-3'>
-              <Sidebar cats={catsArray} nmoSpecsSmp={nmoSmpSpecsArray} nmoSpecsVmp={nmoVmpSpecsArray}/>
+              <Sidebar/>
           </div>
           <div className='col-lg-9'>
               <TrajectoryBanner />
-              <SeminarsList data={data} />
+              <SeminarsList/>
           </div>
         </div>
+        </SeminarsContext.Provider> 
     </div>
   )
 }

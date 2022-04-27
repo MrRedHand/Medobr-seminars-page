@@ -1,15 +1,17 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 import SeminarItemBase from "../seminar-item-base/seminar-item-base";
 import SeminarItemSecondary from "../seminar-item-secondary/seminar-item-secondary";
-
+import { SeminarsContext } from "../../services/seminarsContext";
 
 
 
 const seminarsToLoad = 10;
 
-export default function SeminarsList({data}) {
+export default function SeminarsList() {
 
-    const [current, setTab] = React.useState({
+    const contextData = useContext(SeminarsContext)
+
+    const [current, setTab] = useState({
         active : 'one'
     })
     
@@ -19,6 +21,8 @@ export default function SeminarsList({data}) {
             active : val,
         })
     }
+
+    console.log('contextData', contextData)
 
     return(
         <div className="seminars-list has-tabs">
@@ -35,7 +39,7 @@ export default function SeminarsList({data}) {
 
                         {
                             //отображаю  10 семинаров
-                            data.slice(0, seminarsToLoad).map(elem => {
+                            contextData.data.slice(0, seminarsToLoad).map(elem => {
                                 return <SeminarItemBase key={elem.id} {...elem}/>
                             })
                         }
