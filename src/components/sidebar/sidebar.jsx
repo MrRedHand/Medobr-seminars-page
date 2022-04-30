@@ -2,12 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import MainSearchInput from "../main-search-input/main-search-input";
 import Input from "../input/input";
 import SkeletonFilterItem from "../skeleton-filter-item"
-import { SeminarsContext } from "../../services/seminarsContext";
 import Filter from "../filter/filter";
+import {useDispatch, useSelector} from "react-redux";
 
 export default function Sidebar({cats, types, nmoSpecsVmp, nmoSpecsSmp, dates}) {
 
-    const contextData = useContext(SeminarsContext)
 
     const someRef = React.createRef()
 
@@ -73,18 +72,18 @@ export default function Sidebar({cats, types, nmoSpecsVmp, nmoSpecsSmp, dates}) 
                     <input className="filter__search-field form-control" type="search" name="" id="specs-search" data-search-target="#filter-specs"/>
                     <div className="filter__labels-wrapper">
                     <div className="filter__labels-type-wrap active" id="vmp-tab" data-tab-content=""><b>Высшее медицинское образование</b>
-                        {
-                            contextData.vmp.map(cat => {
-                                return <Input key={cat.id} id={cat.id} value={cat.name}/>
-                            })
-                        }
+                        {/*{*/}
+                        {/*    contextData.vmp.map(cat => {*/}
+                        {/*        return <Input key={cat.id} id={cat.id} value={cat.name}/>*/}
+                        {/*    })*/}
+                        {/*}*/}
                     </div>
                     <div className="filter__labels-type-wrap active" id="smp-tab" data-tab-content="">   <b>Среднее медицинское образование</b>
-                        {
-                            contextData.smp.map(cat => {
-                                return <Input key={cat.id} id={cat.id} value={cat.name}/>
-                            })
-                        }
+                        {/*{*/}
+                        {/*    contextData.smp.map(cat => {*/}
+                        {/*        return <Input key={cat.id} id={cat.id} value={cat.name}/>*/}
+                        {/*    })*/}
+                        {/*}*/}
                     </div>
                     </div>
                     <button>

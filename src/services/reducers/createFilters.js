@@ -12,7 +12,7 @@ const initialState = {
     startMonths : []
 }
 
-const addToFilter = (state = initialState, action) => {
+export const createFiltersReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_CATEGORIES_ARRAY:
             return {

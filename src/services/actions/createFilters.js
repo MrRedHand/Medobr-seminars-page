@@ -1,4 +1,4 @@
-export const ADD_CATEGORIES_ARRAY = '';
-export const ADD_NMO_VMP_ARRAY = '';
-export const ADD_NMO_SMP_ARRAY = '';
-export const ADD_MONTHS_ARRAY = '';
+export const ADD_CATEGORIES_ARRAY = 'ADD_CATEGORIES_ARRAY';
+export const ADD_NMO_VMP_ARRAY = 'ADD_NMO_VMP_ARRAY';
+export const ADD_NMO_SMP_ARRAY = 'ADD_NMO_SMP_ARRAY';
+export const ADD_MONTHS_ARRAY = 'ADD_MONTHS_ARRAY';
