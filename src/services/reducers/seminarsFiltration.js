@@ -2,17 +2,22 @@ import {
     ADD_CATEGORIES_ARRAY,
     ADD_MONTHS_ARRAY,
     ADD_NMO_SMP_ARRAY,
-    ADD_NMO_VMP_ARRAY
-} from '../actions/createFilters'
+    ADD_NMO_VMP_ARRAY,
+    FIRST_LOADING_IS_READY
+} from '../actions/seminarsFiltration'
 
 const initialState = {
     startCats : [],
     startSmp : [],
     startVmp : [],
-    startMonths : []
+    startMonths : [],
+    gotDataResponse : false,
+    firstLoadingIsReady: false,
+    dataUrl : '../../data/seminars999.json',
+    fullDataJson : [],
 }
 
-export const createFiltersReducer = (state = initialState, action) => {
+export const seminarsFiltrationReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_CATEGORIES_ARRAY:
             return {

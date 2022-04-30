@@ -3,11 +3,16 @@ import {useDispatch, useSelector} from "react-redux";
 import Sidebar from '../sidebar/sidebar';
 import SeminarsList from '../seminars-list/seminars-list';
 import TrajectoryBanner from "../trajectory-banner/trajectory-banner";
-import {ADD_CATEGORIES_ARRAY, ADD_NMO_SMP_ARRAY, ADD_NMO_VMP_ARRAY} from "../../services/actions/createFilters";
+import {ADD_CATEGORIES_ARRAY, ADD_NMO_SMP_ARRAY, ADD_NMO_VMP_ARRAY} from "../../services/actions/seminarsFiltration";
+import {seminarsFiltrationReducer} from "../../services/reducers/seminarsFiltration";
 
 export default function App() {
 
-  const data = require('../../data/seminars999.json')
+  //const data = require('../../data/seminars999.json')
+
+  const dataUrl = useSelector(state => state.seminarsFiltration.dataUrl)
+
+  const fullData = useSelector(state => state.seminarsFiltration.fullDataJson)
 
   const dispatch = useDispatch()
 
@@ -15,17 +20,10 @@ export default function App() {
 
   console.log('filtersData', filtersData)
 
-  const [dataParams, setDataState] = useState({
-    url : '../../data/seminars999.json',
-    dataReady : false,
-    gotErrors : false,
-    data : []
-  })
-
   useEffect(() => {
 
     const getData = ()  => {
-      fetch(dataParams.url)
+      fetch(dataUrl)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -35,18 +33,19 @@ export default function App() {
       })
       .then((data) => {
         console.log(data.data)
-        setDataState({
-            ...dataParams,
-            dataReady : true,
-            data : data.data
-        })
+        dispatch({type})
+        // setDataState({
+        //     ...dataParams,
+        //     dataReady : true,
+        //     data : data.data
+        // })
       })
       .catch((error) => {
-        setDataState({
-            ...dataParams,
-            dataReady : false,
-            gotErrors : true
-          })
+        // setDataState({
+        //     ...dataParams,
+        //     dataReady : false,
+        //     gotErrors : true
+        //   })
         console.log(error)
       });
     }

@@ -7,6 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 export default function Sidebar({cats, types, nmoSpecsVmp, nmoSpecsSmp, dates}) {
 
+    // const firstLoadIsReady = useSelector(state => state.)
 
     const someRef = React.createRef()
 
