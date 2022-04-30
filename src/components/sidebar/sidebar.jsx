@@ -7,7 +7,6 @@ import {useDispatch, useSelector} from "react-redux";
 
 export default function Sidebar({cats, types, nmoSpecsVmp, nmoSpecsSmp, dates}) {
 
-    // const firstLoadIsReady = useSelector(state => state.)
 
     const someRef = React.createRef()
 
@@ -27,10 +26,10 @@ export default function Sidebar({cats, types, nmoSpecsVmp, nmoSpecsSmp, dates}) 
             {/* <MainSearchInput /> */}
 
             <div id="filters-wrap">
-
                 <SkeletonFilterItem />
+                {/*<Filter shouldFold={true}/>*/}
 
-                <Filter shouldFold={true}/>
+
 
                 {/* <div className="filter" id="filter-cats">
                     <div className="filter__heading">Категории</div>

@@ -11,12 +11,12 @@ export const WRITE_FULL_DATA = 'WRITE_FULL_DATA' //Весь джейсон, по
 export const FIRST_LOADING_IS_READY = 'FIRST_LOADING_IS_READY'; //Показываю скелетон до тех пор, пока не станет TRUE
 
 //Поведение фильтров
-export const CATEGORY_CHECKED = 'ADD_CATEGORY';
-export const CATEGORY_UNCHECKED = 'REMOVE_CATEGORY';
-export const TYPE_CHECKED = 'ADD_TYPE';
-export const TYPE_UNCHECKED = 'REMOVE_TYPE';
-export const NMO_VMP_CHECKED = 'ADD_SPECIALTY';
-export const NMO_VMP_UNCHECKED = 'ADD_SPECIALTY';
-export const NMO_SMP_CHECKED = 'ADD_SPECIALTY';
-export const NMO_SMP_UNCHECKED = 'ADD_SPECIALTY';
+export const CATEGORY_CHECKED = 'CATEGORY_CHECKED';
+export const CATEGORY_UNCHECKED = 'CATEGORY_UNCHECKED';
+export const TYPE_CHECKED = 'TYPE_CHECKED';
+export const TYPE_UNCHECKED = 'TYPE_UNCHECKED';
+export const NMO_VMP_CHECKED = 'NMO_VMP_CHECKED';
+export const NMO_VMP_UNCHECKED = 'NMO_VMP_UNCHECKED';
+export const NMO_SMP_CHECKED = 'NMO_SMP_CHECKED';
+export const NMO_SMP_UNCHECKED = 'NMO_SMP_UNCHECKED';
 export const CLEAR_FILTER = 'CLEAR_FILTER';

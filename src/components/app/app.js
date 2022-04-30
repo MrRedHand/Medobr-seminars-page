@@ -3,66 +3,71 @@ import {useDispatch, useSelector} from "react-redux";
 import Sidebar from '../sidebar/sidebar';
 import SeminarsList from '../seminars-list/seminars-list';
 import TrajectoryBanner from "../trajectory-banner/trajectory-banner";
-import {ADD_CATEGORIES_ARRAY, ADD_NMO_SMP_ARRAY, ADD_NMO_VMP_ARRAY} from "../../services/actions/seminarsFiltration";
+import {
+  ADD_CATEGORIES_ARRAY,
+  ADD_NMO_SMP_ARRAY,
+  ADD_NMO_VMP_ARRAY,
+  WRITE_FULL_DATA
+} from "../../services/actions/seminarsFiltration";
 import {seminarsFiltrationReducer} from "../../services/reducers/seminarsFiltration";
 
 export default function App() {
 
-  //const data = require('../../data/seminars999.json')
-
-  const dataUrl = useSelector(state => state.seminarsFiltration.dataUrl)
-
-  const fullData = useSelector(state => state.seminarsFiltration.fullDataJson)
+  const data = require('../../data/seminars999.json')
 
   const dispatch = useDispatch()
+  //
+  // const dataUrl = useSelector(state => state.seminarsFiltration.dataUrl)
+  //
+  // const fullData = useSelector(state => state.seminarsFiltration.fullDataJson)
+  //
+  // const filtersData = useSelector(state => state.seminarsFiltration)
 
-  const filtersData = useSelector(state => state.createFilters)
+  //dispatch({type : 'WRITE_FULL_DATA', payload: data})
 
   console.log('filtersData', filtersData)
 
-  useEffect(() => {
-
-    const getData = ()  => {
-      fetch(dataUrl)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return Promise.reject(`Ошибка ${response.status}`);
-        }
-      })
-      .then((data) => {
-        console.log(data.data)
-        dispatch({type})
-        // setDataState({
-        //     ...dataParams,
-        //     dataReady : true,
-        //     data : data.data
-        // })
-      })
-      .catch((error) => {
-        // setDataState({
-        //     ...dataParams,
-        //     dataReady : false,
-        //     gotErrors : true
-        //   })
-        console.log(error)
-      });
-    }
-
-    getData();
-
-  }, [])
+  // useEffect(() => {
+  //   const getData = ()  => {
+  //     fetch(dataUrl)
+  //     .then((response) => {
+  //       if (response.ok) {
+  //         return response.json();
+  //       } else {
+  //         return Promise.reject(`Ошибка ${response.status}`);
+  //       }
+  //     })
+  //     .then((data) => {
+  //       console.log('data.data', data.data)
+  //       dispatch({type : 'WRITE_FULL_DATA', payload: data.data})
+  //       // setDataState({
+  //       //     ...dataParams,
+  //       //     dataReady : true,
+  //       //     data : data.data
+  //       // })
+  //     })
+  //     .catch((error) => {
+  //       // setDataState({
+  //       //     ...dataParams,
+  //       //     dataReady : false,
+  //       //     gotErrors : true
+  //       //   })
+  //       console.log(error)
+  //     });
+  //   }
+  //
+  //   getData();
+  //
+  // }, [])
 
   let catsArray = []
   let nmoVmpSpecsArray = []
   let nmoSmpSpecsArray = []
 
   //Ищу все категории в джейсоне
-  data.map(elem => {
+  fullData.map(elem => {
       if (elem.categories !== null) {
           elem.categories.map(innerCat => {
-
             //слайс вместо пуша массива
             catsArray = [...catsArray, innerCat]
           })
@@ -70,25 +75,25 @@ export default function App() {
   })
     
     //Ищу все НМО-специальности ВМП
-    data.map(elem => {
-      if (elem.nmoSpecialties.length !== 0) {
-        if (elem.nmoSpecialties.vmp != null && elem.nmoSpecialties.vmp.length !== 0) {
-          elem.nmoSpecialties.vmp.map(innerElem => {
-            //удаляю approvedStatus, чтобы не мешался
-            delete innerElem.approvedStatus
-            nmoVmpSpecsArray = [...nmoVmpSpecsArray, innerElem]
-          })
-        }
-
-        if (elem.nmoSpecialties.smp != null && elem.nmoSpecialties.smp.length !== 0) {
-          elem.nmoSpecialties.smp.map(innerElem => {
-            //удаляю approvedStatus, чтобы не мешался
-            delete innerElem.approvedStatus
-            nmoSmpSpecsArray = [...nmoSmpSpecsArray, innerElem]
-          })
-        }
+  fullData.map(elem => {
+    if (elem.nmoSpecialties.length !== 0) {
+      if (elem.nmoSpecialties.vmp != null && elem.nmoSpecialties.vmp.length !== 0) {
+        elem.nmoSpecialties.vmp.map(innerElem => {
+          //удаляю approvedStatus, чтобы не мешался
+          delete innerElem.approvedStatus
+          nmoVmpSpecsArray = [...nmoVmpSpecsArray, innerElem]
+        })
       }
-    })
+
+      if (elem.nmoSpecialties.smp != null && elem.nmoSpecialties.smp.length !== 0) {
+        elem.nmoSpecialties.smp.map(innerElem => {
+          //удаляю approvedStatus, чтобы не мешался
+          delete innerElem.approvedStatus
+          nmoSmpSpecsArray = [...nmoSmpSpecsArray, innerElem]
+        })
+      }
+    }
+  })
 
     //Удаляю все дубли категорий из массива
     catsArray = removeDoubles(catsArray)

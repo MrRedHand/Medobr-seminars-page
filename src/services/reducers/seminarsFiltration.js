@@ -3,6 +3,7 @@ import {
     ADD_MONTHS_ARRAY,
     ADD_NMO_SMP_ARRAY,
     ADD_NMO_VMP_ARRAY,
+    WRITE_FULL_DATA,
     FIRST_LOADING_IS_READY
 } from '../actions/seminarsFiltration'
 
@@ -38,6 +39,11 @@ export const seminarsFiltrationReducer = (state = initialState, action) => {
             return {
                 ...state,
                 startMonths: [...state.startMonths, action.payload]
+            }
+        case  WRITE_FULL_DATA:
+            return {
+                ...state,
+                fullDataJson : action.payload
             }
         default:
             return  state;
