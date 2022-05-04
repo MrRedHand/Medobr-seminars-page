@@ -9,73 +9,76 @@ import {
   ADD_NMO_VMP_ARRAY,
   WRITE_FULL_DATA
 } from "../../services/actions/constants";
-import { getFullData } from "../../services/actions/constants";
 
 export default function App() {
 
   const dispatch = useDispatch()
 
-  useEffect(()=> {
-    // Отправляем экшен-функцию
-    dispatch(getFullData())
-  }, [])
+  const {fullData, startCats, startVmp, startSmp} = useSelector(state => state.seminarsFiltration)
 
-  // useEffect(() => {
-    
-  //   dispatch({type : WRITE_FULL_DATA, payload: data})
+  //useEffect(() => {
 
-  //   let catsArray = []
-  //   let nmoVmpSpecsArray = []
-  //   let nmoSmpSpecsArray = []
+    //dispatch({type : WRITE_FULL_DATA, payload: require('../../data/seminars999')})
 
-  //   //Ищу все категории в джейсоне
-  //   fullData.map(elem => {
+
+  //   const setStartData = () => {
+  //     let catsArray = []
+  //     let nmoVmpSpecsArray = []
+  //     let nmoSmpSpecsArray = []
+  //
+  //     //Ищу все категории в джейсоне
+  //     fullData.map(elem => {
   //       if (elem.categories !== null) {
-  //           elem.categories.map(innerCat => {
-  //             //слайс вместо пуша массива
-  //             catsArray = [...catsArray, innerCat]
+  //         elem.categories.map(innerCat => {
+  //           //слайс вместо пуша массива
+  //           catsArray = [...catsArray, innerCat]
+  //         })
+  //       }
+  //     })
+  //
+  //     //Ищу все НМО-специальности ВМП
+  //     fullData.map(elem => {
+  //       if (elem.nmoSpecialties.length !== 0) {
+  //         if (elem.nmoSpecialties.vmp != null && elem.nmoSpecialties.vmp.length !== 0) {
+  //           elem.nmoSpecialties.vmp.map(innerElem => {
+  //             //удаляю approvedStatus, чтобы не мешался
+  //             delete innerElem.approvedStatus
+  //             nmoVmpSpecsArray = [...nmoVmpSpecsArray, innerElem]
   //           })
+  //         }
+  //
+  //         if (elem.nmoSpecialties.smp != null && elem.nmoSpecialties.smp.length !== 0) {
+  //           elem.nmoSpecialties.smp.map(innerElem => {
+  //             //удаляю approvedStatus, чтобы не мешался
+  //             delete innerElem.approvedStatus
+  //             nmoSmpSpecsArray = [...nmoSmpSpecsArray, innerElem]
+  //           })
+  //         }
   //       }
-  //   })
-      
-  //   //Ищу все НМО-специальности ВМП
-  //   fullData.map(elem => {
-  //     if (elem.nmoSpecialties.length !== 0) {
-  //       if (elem.nmoSpecialties.vmp != null && elem.nmoSpecialties.vmp.length !== 0) {
-  //         elem.nmoSpecialties.vmp.map(innerElem => {
-  //           //удаляю approvedStatus, чтобы не мешался
-  //           delete innerElem.approvedStatus
-  //           nmoVmpSpecsArray = [...nmoVmpSpecsArray, innerElem]
-  //         })
-  //       }
-
-  //       if (elem.nmoSpecialties.smp != null && elem.nmoSpecialties.smp.length !== 0) {
-  //         elem.nmoSpecialties.smp.map(innerElem => {
-  //           //удаляю approvedStatus, чтобы не мешался
-  //           delete innerElem.approvedStatus
-  //           nmoSmpSpecsArray = [...nmoSmpSpecsArray, innerElem]
-  //         })
-  //       }
-  //     }
-  //   })
-
-  //   //Удаляю все дубли категорий из массива
-  //   catsArray = removeDoubles(catsArray)
-  //   nmoVmpSpecsArray = removeDoubles(nmoVmpSpecsArray)
-  //   nmoSmpSpecsArray = removeDoubles(nmoSmpSpecsArray)
-
-  //   dispatch({type: ADD_CATEGORIES_ARRAY, payload: catsArray})
-  //   dispatch({type: ADD_NMO_VMP_ARRAY, payload: nmoVmpSpecsArray})
-  //   dispatch({type: ADD_NMO_SMP_ARRAY, payload: nmoSmpSpecsArray})
-
-  //   console.log('fullData', fullData)
-  //   console.log('filtersData', filtersData)
-
+  //     })
+  //
+  //     //Удаляю все дубли категорий из массива
+  //     catsArray = removeDoubles(catsArray)
+  //     nmoVmpSpecsArray = removeDoubles(nmoVmpSpecsArray)
+  //     nmoSmpSpecsArray = removeDoubles(nmoSmpSpecsArray)
+  //
+  //     dispatch({type: ADD_CATEGORIES_ARRAY, payload: catsArray})
+  //     dispatch({type: ADD_NMO_VMP_ARRAY, payload: nmoVmpSpecsArray})
+  //     dispatch({type: ADD_NMO_SMP_ARRAY, payload: nmoSmpSpecsArray})
+  //
+  //     console.log('fullData', fullData)
+  //     console.log('storedCats', startCats)
+  //     console.log('storedVmp', startVmp)
+  //     console.log('storedSmp', startSmp)
+  //   }
+  //
+  //   setStartData();
+  //
   // }, [])
 
   // useEffect(() => {
   //   const getData = ()  => {
-  //     fetch(dataUrl)
+  //     fetch('/src/data/seminars999')
   //     .then((response) => {
   //       if (response.ok) {
   //         return response.json();
@@ -98,7 +101,7 @@ export default function App() {
   //       //     dataReady : false,
   //       //     gotErrors : true
   //       //   })
-  //       console.log(error)
+  //       console.error(error)
   //     });
   //   }
   //

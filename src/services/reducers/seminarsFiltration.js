@@ -15,7 +15,7 @@ const initialState = {
     gotDataResponse : false,
     firstLoadingIsReady: false,
     dataUrl : '../../data/seminars999.json',
-    fullDataJson : [],
+    fullData : [],
     fullDataIsWritten : false,
 }
 
@@ -24,30 +24,32 @@ export const seminarsFiltrationReducer = (state = initialState, action) => {
         case ADD_CATEGORIES_ARRAY:
             return {
                 ...state,
-                startCats: [...action.payload]
+                startCats: [...state.startCats, ...action.payload]
             }
         case ADD_NMO_VMP_ARRAY:
             return {
                 ...state,
-                startVmp: [...action.payload]
+                startVmp: [...state.startVmp, ...action.payload]
             }
         case ADD_NMO_SMP_ARRAY:
             return {
                 ...state,
-                startSmp: [...action.payload]
+                startSmp: [...state.startSmp, ...action.payload]
             }
         case ADD_MONTHS_ARRAY:
             return {
                 ...state,
-                startMonths: [...action.payload]
+                startMonths: [...state.startMonths, ...action.payload]
             }
         case  WRITE_FULL_DATA:
             return {
                 ...state,
-                fullDataJson : action.payload,
+                fullData : [...state.fullData, ...action.payload],
                 fullDataIsWritten : true,
             }
         default:
             return  state;
     }
  }
+
+ export const writeFullDataAction = (payload) => ({type : WRITE_FULL_DATA, payload})
