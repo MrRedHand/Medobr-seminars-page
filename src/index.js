@@ -5,11 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/main.scss';
 import './js/main'
 import App from './components/app/app';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import {Provider} from "react-redux";
 import { rootReducer } from './services/reducers';
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 console.log('store', store)
 

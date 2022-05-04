@@ -8,24 +8,70 @@ import {
   ADD_NMO_SMP_ARRAY,
   ADD_NMO_VMP_ARRAY,
   WRITE_FULL_DATA
-} from "../../services/actions/seminarsFiltration";
-import {seminarsFiltrationReducer} from "../../services/reducers/seminarsFiltration";
+} from "../../services/actions/constants";
+import { getFullData } from "../../services/actions/constants";
 
 export default function App() {
 
-  const data = require('../../data/seminars999.json')
-
   const dispatch = useDispatch()
-  //
-  // const dataUrl = useSelector(state => state.seminarsFiltration.dataUrl)
-  //
-  // const fullData = useSelector(state => state.seminarsFiltration.fullDataJson)
-  //
-  // const filtersData = useSelector(state => state.seminarsFiltration)
 
-  //dispatch({type : 'WRITE_FULL_DATA', payload: data})
+  useEffect(()=> {
+    // Отправляем экшен-функцию
+    dispatch(getFullData())
+  }, [])
 
-  console.log('filtersData', filtersData)
+  // useEffect(() => {
+    
+  //   dispatch({type : WRITE_FULL_DATA, payload: data})
+
+  //   let catsArray = []
+  //   let nmoVmpSpecsArray = []
+  //   let nmoSmpSpecsArray = []
+
+  //   //Ищу все категории в джейсоне
+  //   fullData.map(elem => {
+  //       if (elem.categories !== null) {
+  //           elem.categories.map(innerCat => {
+  //             //слайс вместо пуша массива
+  //             catsArray = [...catsArray, innerCat]
+  //           })
+  //       }
+  //   })
+      
+  //   //Ищу все НМО-специальности ВМП
+  //   fullData.map(elem => {
+  //     if (elem.nmoSpecialties.length !== 0) {
+  //       if (elem.nmoSpecialties.vmp != null && elem.nmoSpecialties.vmp.length !== 0) {
+  //         elem.nmoSpecialties.vmp.map(innerElem => {
+  //           //удаляю approvedStatus, чтобы не мешался
+  //           delete innerElem.approvedStatus
+  //           nmoVmpSpecsArray = [...nmoVmpSpecsArray, innerElem]
+  //         })
+  //       }
+
+  //       if (elem.nmoSpecialties.smp != null && elem.nmoSpecialties.smp.length !== 0) {
+  //         elem.nmoSpecialties.smp.map(innerElem => {
+  //           //удаляю approvedStatus, чтобы не мешался
+  //           delete innerElem.approvedStatus
+  //           nmoSmpSpecsArray = [...nmoSmpSpecsArray, innerElem]
+  //         })
+  //       }
+  //     }
+  //   })
+
+  //   //Удаляю все дубли категорий из массива
+  //   catsArray = removeDoubles(catsArray)
+  //   nmoVmpSpecsArray = removeDoubles(nmoVmpSpecsArray)
+  //   nmoSmpSpecsArray = removeDoubles(nmoSmpSpecsArray)
+
+  //   dispatch({type: ADD_CATEGORIES_ARRAY, payload: catsArray})
+  //   dispatch({type: ADD_NMO_VMP_ARRAY, payload: nmoVmpSpecsArray})
+  //   dispatch({type: ADD_NMO_SMP_ARRAY, payload: nmoSmpSpecsArray})
+
+  //   console.log('fullData', fullData)
+  //   console.log('filtersData', filtersData)
+
+  // }, [])
 
   // useEffect(() => {
   //   const getData = ()  => {
@@ -60,49 +106,7 @@ export default function App() {
   //
   // }, [])
 
-  let catsArray = []
-  let nmoVmpSpecsArray = []
-  let nmoSmpSpecsArray = []
-
-  //Ищу все категории в джейсоне
-  fullData.map(elem => {
-      if (elem.categories !== null) {
-          elem.categories.map(innerCat => {
-            //слайс вместо пуша массива
-            catsArray = [...catsArray, innerCat]
-          })
-      }
-  })
-    
-    //Ищу все НМО-специальности ВМП
-  fullData.map(elem => {
-    if (elem.nmoSpecialties.length !== 0) {
-      if (elem.nmoSpecialties.vmp != null && elem.nmoSpecialties.vmp.length !== 0) {
-        elem.nmoSpecialties.vmp.map(innerElem => {
-          //удаляю approvedStatus, чтобы не мешался
-          delete innerElem.approvedStatus
-          nmoVmpSpecsArray = [...nmoVmpSpecsArray, innerElem]
-        })
-      }
-
-      if (elem.nmoSpecialties.smp != null && elem.nmoSpecialties.smp.length !== 0) {
-        elem.nmoSpecialties.smp.map(innerElem => {
-          //удаляю approvedStatus, чтобы не мешался
-          delete innerElem.approvedStatus
-          nmoSmpSpecsArray = [...nmoSmpSpecsArray, innerElem]
-        })
-      }
-    }
-  })
-
-    //Удаляю все дубли категорий из массива
-    catsArray = removeDoubles(catsArray)
-    nmoVmpSpecsArray = removeDoubles(nmoVmpSpecsArray)
-    nmoSmpSpecsArray = removeDoubles(nmoSmpSpecsArray)
-
-    dispatch({type: 'ADD_CATEGORIES_ARRAY', payload: catsArray})
-    dispatch({type: 'ADD_NMO_VMP_ARRAY', payload: nmoVmpSpecsArray})
-    dispatch({type: 'ADD_NMO_SMP_ARRAY', payload: nmoSmpSpecsArray})
+  
 
     //Метод удаления копий из массивов
     function removeDoubles(arr) {

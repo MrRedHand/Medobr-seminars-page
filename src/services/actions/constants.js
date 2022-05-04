@@ -20,3 +20,11 @@ export const NMO_VMP_UNCHECKED = 'NMO_VMP_UNCHECKED';
 export const NMO_SMP_CHECKED = 'NMO_SMP_CHECKED';
 export const NMO_SMP_UNCHECKED = 'NMO_SMP_UNCHECKED';
 export const CLEAR_FILTER = 'CLEAR_FILTER';
+
+//Получение полного джейсона
+export const GET_FULLDATA_REQUEST = 'GET_FULLDATA_REQUEST';
+export const GET_FULLDATA_SUCCESS = 'GET_FULLDATA_SUCCESS';
+export const GET_FULLDATA_FAILED = 'GET_FULLDATA_FAILED';
+
+
+

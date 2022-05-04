@@ -13,9 +13,9 @@ export default function Sidebar({cats, types, nmoSpecsVmp, nmoSpecsSmp, dates}) 
     useEffect(() => {
 
       const si = document.querySelector('.sec')
-      si.addEventListener('onchange', console.log('in'))
-      console.log(si)
-      console.log(someRef)
+      //si.addEventListener('onchange', console.log('in'))
+      // console.log(si)
+      // console.log(someRef)
     })
     
     
