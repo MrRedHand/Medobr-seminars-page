@@ -26,14 +26,14 @@ const SpecsFilter = ({title}) => {
                  <div className="filter__labels-type-wrap" id="vmp-tab" data-tab-content=""><b>Высшее медицинское образование</b>
                      {
                          startVmp.map(cat => {
-                             return <Input key={cat.id} id={cat.id} value={cat.name}/>
+                             return <Input key={cat.id} catId={cat.id} value={cat.name}/>
                          })
                      }
                  </div>
                  <div className="filter__labels-type-wrap" id="smp-tab" data-tab-content="">   <b>Среднее медицинское образование</b>
                      {
                          startSmp.map(cat => {
-                             return <Input key={cat.id} id={cat.id} value={cat.name}/>
+                             return <Input key={cat.id} catId={cat.id} value={cat.name}/>
                          })
                      }
                  </div>

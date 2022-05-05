@@ -29,7 +29,7 @@ const BaseFilter = ({title}) => {
             <div className={st.filter__labels_wrapper}>
                 {
                     startCats.map((cat, index) => {
-                        const itemToAdd = <Input key={cat.id} id={cat.id} value={cat.name}/>
+                        const itemToAdd = <Input key={cat.id} catId={cat.id} value={cat.name}/>
                         currentCatsArray = [...currentCatsArray, itemToAdd]
                         return itemToAdd
                     })
