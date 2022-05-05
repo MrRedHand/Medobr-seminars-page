@@ -4,7 +4,8 @@ import {
     ADD_NMO_SMP_ARRAY,
     ADD_NMO_VMP_ARRAY,
     WRITE_FULL_DATA,
-    FIRST_LOADING_IS_READY
+    FIRST_LOADING_IS_READY,
+    GOT_ERRORS_DATA_IS_NOT_LOADED
 } from '../actions/constants'
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
     firstLoadingIsReady: false,
     dataUrl : '../../data/seminars999.json',
     fullData : [],
+    fullDataGotErrors: false,
     fullDataIsWritten : false,
 }
 
@@ -47,9 +49,17 @@ export const seminarsFiltrationReducer = (state = initialState, action) => {
                 fullData : [...state.fullData, ...action.payload],
                 fullDataIsWritten : true,
             }
+        case GOT_ERRORS_DATA_IS_NOT_LOADED:
+            return  {
+                ...state,
+                fullDataGotErrors: true,
+            }
         default:
             return  state;
     }
  }
 
- export const writeFullDataAction = (payload) => ({type : WRITE_FULL_DATA, payload})
+ export const writeFullDataAction = (payload) => ({type : WRITE_FULL_DATA, payload});
+export  const writeCatsAction = (payload) => ({type : ADD_CATEGORIES_ARRAY, payload});
+export  const writeNmoVmpAction = (payload) => ({type : ADD_NMO_VMP_ARRAY, payload});
+export  const writeNmoSmpAction = (payload) => ({type : ADD_NMO_SMP_ARRAY, payload});

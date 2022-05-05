@@ -9,121 +9,25 @@ import {
   ADD_NMO_VMP_ARRAY,
   WRITE_FULL_DATA
 } from "../../services/actions/constants";
+import {fetchData} from "../../services/asyncActions/getFullData";
+import {createStartData} from "../../services/asyncActions/createStartData";
 
 export default function App() {
 
   const dispatch = useDispatch()
 
-  const {fullData, startCats, startVmp, startSmp} = useSelector(state => state.seminarsFiltration)
-
-  //useEffect(() => {
-
-    //dispatch({type : WRITE_FULL_DATA, payload: require('../../data/seminars999')})
+  const {fullData, startCats, startVmp, startSmp, fullDataIsWritten} = useSelector(state => state.seminarsFiltration)
 
 
-  //   const setStartData = () => {
-  //     let catsArray = []
-  //     let nmoVmpSpecsArray = []
-  //     let nmoSmpSpecsArray = []
-  //
-  //     //Ищу все категории в джейсоне
-  //     fullData.map(elem => {
-  //       if (elem.categories !== null) {
-  //         elem.categories.map(innerCat => {
-  //           //слайс вместо пуша массива
-  //           catsArray = [...catsArray, innerCat]
-  //         })
-  //       }
-  //     })
-  //
-  //     //Ищу все НМО-специальности ВМП
-  //     fullData.map(elem => {
-  //       if (elem.nmoSpecialties.length !== 0) {
-  //         if (elem.nmoSpecialties.vmp != null && elem.nmoSpecialties.vmp.length !== 0) {
-  //           elem.nmoSpecialties.vmp.map(innerElem => {
-  //             //удаляю approvedStatus, чтобы не мешался
-  //             delete innerElem.approvedStatus
-  //             nmoVmpSpecsArray = [...nmoVmpSpecsArray, innerElem]
-  //           })
-  //         }
-  //
-  //         if (elem.nmoSpecialties.smp != null && elem.nmoSpecialties.smp.length !== 0) {
-  //           elem.nmoSpecialties.smp.map(innerElem => {
-  //             //удаляю approvedStatus, чтобы не мешался
-  //             delete innerElem.approvedStatus
-  //             nmoSmpSpecsArray = [...nmoSmpSpecsArray, innerElem]
-  //           })
-  //         }
-  //       }
-  //     })
-  //
-  //     //Удаляю все дубли категорий из массива
-  //     catsArray = removeDoubles(catsArray)
-  //     nmoVmpSpecsArray = removeDoubles(nmoVmpSpecsArray)
-  //     nmoSmpSpecsArray = removeDoubles(nmoSmpSpecsArray)
-  //
-  //     dispatch({type: ADD_CATEGORIES_ARRAY, payload: catsArray})
-  //     dispatch({type: ADD_NMO_VMP_ARRAY, payload: nmoVmpSpecsArray})
-  //     dispatch({type: ADD_NMO_SMP_ARRAY, payload: nmoSmpSpecsArray})
-  //
-  //     console.log('fullData', fullData)
-  //     console.log('storedCats', startCats)
-  //     console.log('storedVmp', startVmp)
-  //     console.log('storedSmp', startSmp)
-  //   }
-  //
-  //   setStartData();
-  //
-  // }, [])
+  useEffect(() => {
+    //redux-thunk - вызов вынесенной функции
+    dispatch(fetchData())
 
-  // useEffect(() => {
-  //   const getData = ()  => {
-  //     fetch('/src/data/seminars999')
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         return Promise.reject(`Ошибка ${response.status}`);
-  //       }
-  //     })
-  //     .then((data) => {
-  //       console.log('data.data', data.data)
-  //       dispatch({type : 'WRITE_FULL_DATA', payload: data.data})
-  //       // setDataState({
-  //       //     ...dataParams,
-  //       //     dataReady : true,
-  //       //     data : data.data
-  //       // })
-  //     })
-  //     .catch((error) => {
-  //       // setDataState({
-  //       //     ...dataParams,
-  //       //     dataReady : false,
-  //       //     gotErrors : true
-  //       //   })
-  //       console.error(error)
-  //     });
-  //   }
-  //
-  //   getData();
-  //
-  // }, [])
+    fullDataIsWritten && dispatch(createStartData(fullData))
 
-  
+    console.log('fullData', fullData)
 
-    //Метод удаления копий из массивов
-    function removeDoubles(arr) {
-      arr = arr.filter((value, index, self) =>
-        index === self.findIndex((t) => (
-          t.place === value.place && t.name === value.name
-        ))
-      )
-      //Сортирую все по алфавиту в параметре name у каждого объекта массива
-      return arr.sort((a,b) => {
-        const x = a.name; const y = b.name;
-        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-      })
-    }
+  }, [fullDataIsWritten])
 
   return (
     <div className="container seminars-list-page">
