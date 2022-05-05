@@ -5,6 +5,7 @@ import SeminarsList from '../seminars-list/seminars-list';
 import TrajectoryBanner from "../trajectory-banner/trajectory-banner";
 import {fetchData} from "../../services/asyncActions/getFullData";
 import {createStartData} from "../../services/asyncActions/createStartData";
+import Header from "../header/header";
 
 export default function App() {
 
@@ -28,16 +29,19 @@ export default function App() {
   }, [fullDataIsWritten])
 
   return (
-    <div className="container seminars-list-page">
-        <div className='row'>
-          <div className='col-lg-3'>
-              <Sidebar/>
+      <>
+          <Header/>
+          <div className="container seminars-list-page">
+              <div className='row'>
+                  <div className='col-lg-3'>
+                      <Sidebar/>
+                  </div>
+                  <div className='col-lg-9'>
+                      <TrajectoryBanner />
+                      <SeminarsList/>
+                  </div>
+              </div>
           </div>
-          <div className='col-lg-9'>
-              <TrajectoryBanner />
-              <SeminarsList/>
-          </div>
-        </div>
-    </div>
+      </>
   )
 }

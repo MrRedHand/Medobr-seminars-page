@@ -43,8 +43,8 @@ export default function SeminarsList() {
                                 fullData.slice(0, seminarsToLoad).map(elem => {
                                     return <SeminarItemBase key={elem.id} {...elem}/>
                                 })
-                            : em.map(el => {
-                                  return  <SkeletonSeminarItem/>
+                            : em.map((el, index) => {
+                                  return  <SkeletonSeminarItem key={index}/>
                             })
 
                         }

@@ -5,7 +5,13 @@ import SeminarTag from "../seminar-tag/seminar-tag";
 
 const SeminarItemBase = (props) => {
 
-    let totalNmoSpecs = 0
+    const smpSpecs = props.nmoSpecialties
+                        && props.nmoSpecialties.smp
+                        && props.nmoSpecialties.smp.specs.length
+
+    const vmpSpecs = props.nmoSpecialties
+                        && props.nmoSpecialties.vmp
+                        && props.nmoSpecialties.vmp.specs.length
 
     return(
         <div className="seminar-item">
@@ -13,7 +19,9 @@ const SeminarItemBase = (props) => {
                 <div className="seminar-item__date">{props.date}</div>
                 <div className="seminar-item__day">Пн</div>
                 <div className="seminar-item__watch-count has-tooltip">
-                    <div className="watch-count__text max-round sm-btn">399</div>
+                    <div className="watch-count__text max-round sm-btn">
+                        {props.viewCounts !== null && props.viewCounts}
+                    </div>
                     <div className="seminar-item__tooltip"></div>
                 </div>
                 <div className="seminar-item__cats has-tooltip">
@@ -38,14 +46,15 @@ const SeminarItemBase = (props) => {
                 </div>
                 <div className="seminar-item__specs has-tooltip">   
                     <div className="specs__text max-round sm-btn">
-                        {
-                            props.nmoSpecialties !== null
-                            && props.nmoSpecialties.smp
-                            && (totalNmoSpecs = props.nmoSpecialties.smp.length)
-                            && props.nmoSpecialties.vmp
-                            && (totalNmoSpecs += props.nmoSpecialties.vmp.length)
-                        }
-                        {totalNmoSpecs > 0 && ` специальностей`}
+                        {/*{*/}
+
+                        {/*    props.nmoSpecialties !== null*/}
+                        {/*    && props.nmoSpecialties.smp.specs*/}
+                        {/*    && (totalNmoSpecs = props.nmoSpecialties.smp.specs.length)*/}
+                        {/*    && props.nmoSpecialties.vmp.specs*/}
+                        {/*    && (totalNmoSpecs += props.nmoSpecialties.vmp.specs.length)*/}
+                        {/*}*/}
+                        {/*{totalNmoSpecs > 0 && ` специальностей`}*/}
                     </div>
                     <div className="seminar-item__tooltip"></div>
                 </div>
@@ -54,7 +63,7 @@ const SeminarItemBase = (props) => {
             </div>
             <div className="seminar-item__body">
                 <div className="seminar-item__title">
-                    <a>{props.name}</a>
+                    <a href={`https://medobr.com${props.detailPageUrl}`}>{props.name}</a>
                 </div>
             </div>
             <div className="seminar-item__footer">
@@ -80,7 +89,7 @@ const SeminarItemBase = (props) => {
             </div>
             <div className="seminar-item__right-col">
                 <div className="seminar-item__seminar-avatar">
-                    {/* <img src={props.pic} alt="" />  */}
+                     <img src={`https://medobr.com${props.imgLink}`} alt="" />
                 </div>
                 <button className="seminar-item__call-me-btn btn cta-btn">Оставить заявку</button>
             </div>

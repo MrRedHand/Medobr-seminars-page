@@ -2,8 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import MainSearchInput from "../main-search-input/main-search-input";
 import Input from "../input/input";
 import SkeletonFilterItem from "../skeleton-filter-item"
-import Filter from "../filter/filter";
+import BaseFilter from "../filter/base-filter";
+import SpecsFilter from "../filter/specs-filter";
 import {useDispatch, useSelector} from "react-redux";
+
 
 export default function Sidebar({cats, types, nmoSpecsVmp, nmoSpecsSmp, dates}) {
 
@@ -29,7 +31,12 @@ export default function Sidebar({cats, types, nmoSpecsVmp, nmoSpecsSmp, dates}) 
             <div id="filters-wrap">
                 {
                     sidebarDataIsReady
-                    ? <Filter shouldFold={true}/>
+                    ? <BaseFilter title={'Категории'}/>
+                    : <SkeletonFilterItem />
+                }
+                {
+                    sidebarDataIsReady
+                    ? <SpecsFilter title={'Выбор специальности с НМО'}/>
                     : <SkeletonFilterItem />
                 }
 
@@ -69,34 +76,7 @@ export default function Sidebar({cats, types, nmoSpecsVmp, nmoSpecsSmp, dates}) 
               {/*  </div>*/}
 
 
-              {/*  <div className="filter has-tabs" id="filter-specs">*/}
-              {/*      <div className="filter__heading">Выбор специальности с НМО</div>*/}
-              {/*      <div className="filter__tabs-btns">*/}
-              {/*          <button data-tab-target="#vmp-tab">Высший мед. персонал</button>*/}
-              {/*          <button data-tab-target="#smp-tab">Средний мед персонал</button>*/}
-              {/*      </div>*/}
-              {/*      <input className="filter__search-field form-control" type="search" name="" id="specs-search" data-search-target="#filter-specs"/>*/}
-              {/*      <div className="filter__labels-wrapper">*/}
-              {/*      <div className="filter__labels-type-wrap active" id="vmp-tab" data-tab-content=""><b>Высшее медицинское образование</b>*/}
-              {/*          /!*{*!/*/}
-              {/*          /!*    contextData.vmp.map(cat => {*!/*/}
-              {/*          /!*        return <Input key={cat.id} id={cat.id} value={cat.name}/>*!/*/}
-              {/*          /!*    })*!/*/}
-              {/*          /!*}*!/*/}
-              {/*      </div>*/}
-              {/*      <div className="filter__labels-type-wrap active" id="smp-tab" data-tab-content="">   <b>Среднее медицинское образование</b>*/}
-              {/*          /!*{*!/*/}
-              {/*          /!*    contextData.smp.map(cat => {*!/*/}
-              {/*          /!*        return <Input key={cat.id} id={cat.id} value={cat.name}/>*!/*/}
-              {/*          /!*    })*!/*/}
-              {/*          /!*}*!/*/}
-              {/*      </div>*/}
-              {/*      </div>*/}
-              {/*      <button>*/}
-              {/*          <span className="folded-btn">Показать всё</span>*/}
-              {/*          <span className="unfolded-btn">Свернуть</span>*/}
-              {/*      </button>*/}
-              {/*  </div>*/}
+
 
 
               {/*  <div className="filter" id="filter-dates">*/}
