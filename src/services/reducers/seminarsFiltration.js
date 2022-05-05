@@ -5,7 +5,8 @@ import {
     ADD_NMO_VMP_ARRAY,
     WRITE_FULL_DATA,
     FIRST_LOADING_IS_READY,
-    GOT_ERRORS_DATA_IS_NOT_LOADED
+    GOT_ERRORS_DATA_IS_NOT_LOADED,
+    SIDEBAR_DATA_IS_READY
 } from '../actions/constants'
 
 const initialState = {
@@ -14,7 +15,7 @@ const initialState = {
     startVmp : [],
     startMonths : [],
     gotDataResponse : false,
-    firstLoadingIsReady: false,
+    sidebarDataIsReady: false,
     dataUrl : '../../data/seminars999.json',
     fullData : [],
     fullDataGotErrors: false,
@@ -54,12 +55,18 @@ export const seminarsFiltrationReducer = (state = initialState, action) => {
                 ...state,
                 fullDataGotErrors: true,
             }
+        case SIDEBAR_DATA_IS_READY:
+            return  {
+                ...state,
+                sidebarDataIsReady : true
+            }
         default:
             return  state;
     }
  }
 
- export const writeFullDataAction = (payload) => ({type : WRITE_FULL_DATA, payload});
-export  const writeCatsAction = (payload) => ({type : ADD_CATEGORIES_ARRAY, payload});
-export  const writeNmoVmpAction = (payload) => ({type : ADD_NMO_VMP_ARRAY, payload});
-export  const writeNmoSmpAction = (payload) => ({type : ADD_NMO_SMP_ARRAY, payload});
+export const writeFullDataAction = (payload) => ({type : WRITE_FULL_DATA, payload});
+export const writeCatsAction = (payload) => ({type : ADD_CATEGORIES_ARRAY, payload});
+export const writeNmoVmpAction = (payload) => ({type : ADD_NMO_VMP_ARRAY, payload});
+export const writeNmoSmpAction = (payload) => ({type : ADD_NMO_SMP_ARRAY, payload});
+export const sidebarDataAction = (payload) => ({type : SIDEBAR_DATA_IS_READY, payload});

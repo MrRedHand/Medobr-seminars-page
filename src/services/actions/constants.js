@@ -3,6 +3,7 @@ export const ADD_CATEGORIES_ARRAY = 'ADD_CATEGORIES_ARRAY';
 export const ADD_NMO_VMP_ARRAY = 'ADD_NMO_VMP_ARRAY';
 export const ADD_NMO_SMP_ARRAY = 'ADD_NMO_SMP_ARRAY';
 export const ADD_MONTHS_ARRAY = 'ADD_MONTHS_ARRAY';
+export const SIDEBAR_DATA_IS_READY = 'SIDEBAR_DATA_IS_READY';
 
 //Сверка полученных данных
 export const GOT_DATA_RESPONSE = 'GOT_DATA_RESPONSE'

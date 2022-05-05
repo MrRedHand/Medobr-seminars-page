@@ -1,6 +1,12 @@
-import {writeCatsAction, writeNmoVmpAction, writeNmoSmpAction} from "../reducers/seminarsFiltration";
+import {
+    writeCatsAction,
+    writeNmoVmpAction,
+    writeNmoSmpAction,
+    sidebarDataAction}
+    from "../reducers/seminarsFiltration";
 
 export const createStartData = (fullData) => {
+
     return function (dispatch) {
         let catsArray = []
         let nmoVmpSpecsArray = []
@@ -18,23 +24,17 @@ export const createStartData = (fullData) => {
 
         //Ищу все НМО-специальности ВМП
         fullData.map(elem => {
-            if (elem.nmoSpecialties.length !== 0) {
-                if (elem.nmoSpecialties.vmp != null && elem.nmoSpecialties.vmp.length !== 0) {
-                    elem.nmoSpecialties.vmp.map(innerElem => {
-                        //удаляю approvedStatus, чтобы не мешался
-                        delete innerElem.approvedStatus
-                        nmoVmpSpecsArray = [...nmoVmpSpecsArray, innerElem]
-                    })
-                }
-
-                if (elem.nmoSpecialties.smp != null && elem.nmoSpecialties.smp.length !== 0) {
-                    elem.nmoSpecialties.smp.map(innerElem => {
-                        //удаляю approvedStatus, чтобы не мешался
-                        delete innerElem.approvedStatus
-                        nmoSmpSpecsArray = [...nmoSmpSpecsArray, innerElem]
-                    })
-                }
-            }
+            elem.nmoSpecialties !== null
+            && elem.nmoSpecialties.vmp
+            && elem.nmoSpecialties.vmp.specs.length > 0
+            && elem.nmoSpecialties.vmp.specs.map(innerElem => {
+                nmoVmpSpecsArray = [...nmoVmpSpecsArray, innerElem]
+            })
+            && elem.nmoSpecialties.smp
+            && elem.nmoSpecialties.smp.specs.length > 0
+            &&  elem.nmoSpecialties.smp.specs.map(innerElem => {
+                nmoSmpSpecsArray = [...nmoSmpSpecsArray, innerElem]
+            })
         })
 
         //Удаляю все дубли категорий из массива
@@ -42,17 +42,14 @@ export const createStartData = (fullData) => {
         nmoVmpSpecsArray = removeDoubles(nmoVmpSpecsArray)
         nmoSmpSpecsArray = removeDoubles(nmoSmpSpecsArray)
 
+        console.log('catsArray', catsArray)
+        console.log('nmoVmpSpecsArray', nmoVmpSpecsArray)
+        console.log('nmoSmpSpecsArray', nmoVmpSpecsArray)
+
         dispatch(writeCatsAction(catsArray))
         dispatch(writeNmoVmpAction(nmoVmpSpecsArray))
         dispatch(writeNmoSmpAction(nmoSmpSpecsArray))
-        // dispatch({type: ADD_CATEGORIES_ARRAY, payload: catsArray})
-        // dispatch({type: ADD_NMO_VMP_ARRAY, payload: nmoVmpSpecsArray})
-        // dispatch({type: ADD_NMO_SMP_ARRAY, payload: nmoSmpSpecsArray})
-
-        console.log('fullData', fullData)
-        console.log('storedCats', catsArray)
-        console.log('storedVmp', nmoVmpSpecsArray)
-        console.log('storedSmp', nmoSmpSpecsArray)
+        dispatch(sidebarDataAction(true))
 
         //Метод удаления копий из массивов
         function removeDoubles(arr) {

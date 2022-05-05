@@ -1,11 +1,13 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useState} from 'react'
 import st from './filter.module.css';
-import { SeminarsContext } from '../../services/seminarsContext'
-import Input from '../input/input'
+
+import Input from '../input/input';
+
+import {useSelector} from "react-redux";
 
 const Filter = ({shouldFold}) => {
 
-    const contextData = useContext(SeminarsContext)
+    const data = useSelector(state => state.seminarsFiltration.startCats)
 
     const [folded, setFold] = useState(shouldFold)
 
@@ -20,7 +22,7 @@ const Filter = ({shouldFold}) => {
             <div className="filter__labels-wrapper">
                 
                 {
-                    contextData.cats.map((cat, index) => {
+                    data.map((cat, index) => {
                         return <Input key={cat.id} id={cat.id} value={cat.name}/>
                     })
                 }
