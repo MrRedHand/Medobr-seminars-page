@@ -15,6 +15,7 @@
       max-height: 0;
       overflow: hidden;
       margin: 0 !important;
+      padding: 0;
     }
     .filter__tabs-btns {
       transform: scaleY(0);
@@ -22,6 +23,13 @@
       opacity: 0;
       max-height: 0;
       overflow: hidden;
+      margin: 0;
+    }
+    .hideable {
+      visibility: hidden;
+      height: 0;
+      overflow: hidden;
+      transform: scaleY(0);
       margin: 0;
     }
   }
@@ -35,6 +43,7 @@
 
   &__labels_wrapper {
     overflow-y: scroll;
+    height: 220px;
 
     b {
       display: block;

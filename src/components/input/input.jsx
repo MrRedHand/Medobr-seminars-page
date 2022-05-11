@@ -7,8 +7,8 @@ const Input = ({ catId, value, className }) => {
 
   return (
     <label
-      className={`${st.filter__label} ${className === null ? className : ""}`}
       data-category-id={catId}
+      className={`${st.filter__label} ${className}`}
     >
       <input type="checkbox" />
       <span className="span-value">{value}</span>
