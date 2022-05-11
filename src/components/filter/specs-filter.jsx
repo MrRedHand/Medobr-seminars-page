@@ -16,13 +16,10 @@ const SpecsFilter = ({ title }) => {
     currentVMP : startVmp
   })
 
-  const [currentTab, setTabState] = useState({
-    one : true,
-    two : true
-  })
+  const [currentTab, setTabState] = useState(null)
 
   const switchTab = (tab) => {
-
+    setTabState(tab)
   }
 
   const [folded, setFold] = useState(true);
@@ -47,8 +44,8 @@ const SpecsFilter = ({ title }) => {
     >
       <div className={st.filter__heading}>{title}</div>
       <div className={st.filter__tabs_btns}>
-        <button data-tab-target="#vmp-tab" onClick={() => switchTab(one)} className={currentTab.one ? st.active : ''}>Высший мед. персонал</button>
-        <button data-tab-target="#smp-tab" onClick={() => switchTab(two)} className={currentTab.two ? st.active : ''}>Средний мед персонал</button>
+        <button data-tab-target="#vmp-tab" onClick={() => switchTab('one')} className={currentTab === 'one' ? st.active : ''}>Высший мед. персонал</button>
+        <button data-tab-target="#smp-tab" onClick={() => switchTab('two')} className={currentTab === 'two' ? st.active : ''}>Средний мед персонал</button>
       </div>
       <input
         className={`${st.filter__search_field} form-control`}
@@ -67,22 +64,13 @@ const SpecsFilter = ({ title }) => {
         value={searchState.value}
       />
       <div className={st.filter__labels_wrapper}>
-        <div
-          className="filter__labels-type-wrap"
-          id="vmp-tab"
-          data-tab-content=""
-        >
+        <div className="filter__labels-type-wrap">
           <b>Высшее медицинское образование</b>
           {searchState.currentVMP.map((cat, index) => {
             return <Input key={cat.id} catId={cat.id} value={cat.name} className={index > 2 ? st.hideable : ''}/>;
           })}
         </div>
-        <div
-          className="filter__labels-type-wrap"
-          id="smp-tab"
-          data-tab-content=""
-        >
-          {" "}
+        <div className="filter__labels-type-wrap">
           <b>Среднее медицинское образование</b>
           {searchState.currentSMP.map((cat, index) => {
             return <Input key={cat.id} catId={cat.id} value={cat.name} className={index > 2 ? st.hideable : ''}/>;
