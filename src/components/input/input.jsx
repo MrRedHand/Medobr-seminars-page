@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import st from "./input.module.scss";
 import { useDispatch } from "react-redux";
 
-const Input = ({ catId, value, className }) => {
+const Input = ({ catId, value, className , eventsCount}) => {
   const dispatch = useDispatch();
 
   return (
@@ -12,6 +12,10 @@ const Input = ({ catId, value, className }) => {
     >
       <input type="checkbox" />
       <span className="span-value">{value}</span>
+      {
+        eventsCount > 0
+        && <span className={st.events_count}>1234</span>
+      }
     </label>
   );
 };

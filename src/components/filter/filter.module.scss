@@ -17,14 +17,7 @@
       margin: 0 !important;
       padding: 0;
     }
-    .filter__tabs-btns {
-      transform: scaleY(0);
-      visibility: hidden;
-      opacity: 0;
-      max-height: 0;
-      overflow: hidden;
-      margin: 0;
-    }
+
     .hideable {
       visibility: hidden;
       height: 0;
@@ -61,12 +54,10 @@
   }
 
   &__search_field {
-    margin: 10px 0;
     transition: all linear 0.1s;
   }
 
   button {
-    margin-top: 10px;
     background: transparent;
     border:none;
     outline: none;
@@ -83,15 +74,22 @@
     margin-right: 7px;
   }
 
+  &__labels_type_wrap {
+    display: none;
+  }
+  
 
+  &__labels_type_wrap.active {
+    display: block;
+  }
 }
 
 .filter__tabs_btns {
-  display: flex;
-  flex-direction: row;
   visibility: visible;
   opacity: 1;
   transform: scaleY(1);
+  display: grid;
+  grid-template-columns: 50% 50%;
 
   button {
     display: block;
@@ -99,7 +97,6 @@
     text-align: center;
     font-size: 12px;
     box-shadow: 0 0 0 1px #DBDBDB;
-    margin-right: 1px;
     color: #535353;
 
 

@@ -11,6 +11,7 @@ export const createStartData = (fullData) => {
         let catsArray = []
         let nmoVmpSpecsArray = []
         let nmoSmpSpecsArray = []
+        let datesArray = []
 
         //Ищу все категории в джейсоне
         fullData.map(elem => {
@@ -36,6 +37,14 @@ export const createStartData = (fullData) => {
                 nmoSmpSpecsArray = [...nmoSmpSpecsArray, innerElem]
             })
         })
+
+        fullData.map(elem => {
+            let asd = elem.date
+            asd = asd.slice(3)
+            datesArray = [...datesArray, asd]
+        })
+
+        console.log('datesArray', datesArray)
 
         //Удаляю все дубли категорий из массива
         catsArray = removeDoubles(catsArray)

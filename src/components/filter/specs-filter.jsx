@@ -20,12 +20,14 @@ const SpecsFilter = ({ title }) => {
 
   const switchTab = (tab) => {
     setTabState(tab)
+    setFold(false);
   }
 
   const [folded, setFold] = useState(true);
 
   const toggleFold = () => {
     setFold(!folded);
+    setTabState(null)
   };
 
 
@@ -48,8 +50,9 @@ const SpecsFilter = ({ title }) => {
         <button data-tab-target="#smp-tab" onClick={() => switchTab('two')} className={currentTab === 'two' ? st.active : ''}>Средний мед персонал</button>
       </div>
       <input
-        className={`${st.filter__search_field} form-control`}
+        className={`${st.filter__search_field} form-control mt-3`}
         type="search"
+        autoComplete={"off"}
         name=""
         id="specs-search"
         data-search-target="#filter-specs"
@@ -63,14 +66,15 @@ const SpecsFilter = ({ title }) => {
         ref={searchRef}
         value={searchState.value}
       />
-      <div className={st.filter__labels_wrapper}>
-        <div className="filter__labels-type-wrap">
+
+      <div className={`${st.filter__labels_wrapper} mt-3 mb-3`}>
+        <div className={`${st.filter__labels_type_wrap} ${currentTab === 'one' ? st.active : ''} ${currentTab === null && st.active}`}>
           <b>Высшее медицинское образование</b>
           {searchState.currentVMP.map((cat, index) => {
             return <Input key={cat.id} catId={cat.id} value={cat.name} className={index > 2 ? st.hideable : ''}/>;
           })}
         </div>
-        <div className="filter__labels-type-wrap">
+        <div className={`${st.filter__labels_type_wrap} ${currentTab === 'two' ? st.active : ''} ${currentTab === null && st.active}`}>
           <b>Среднее медицинское образование</b>
           {searchState.currentSMP.map((cat, index) => {
             return <Input key={cat.id} catId={cat.id} value={cat.name} className={index > 2 ? st.hideable : ''}/>;

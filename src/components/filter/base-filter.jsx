@@ -18,14 +18,14 @@ const BaseFilter = ({ title }) => {
       <div className={st.filter__heading}>{title}</div>
 
       <input
-        className={`${st.filter__search_field} form-control`}
+        className={`${st.filter__search_field} form-control  mt-3`}
         type="search"
         autoComplete={"off"}
         id="cat-search"
         data-search-target="#filter-cats"
       />
 
-      <div className={st.filter__labels_wrapper}>
+      <div className={`${st.filter__labels_wrapper} mt-3 mb-3`}>
         {startCats.map((cat, index) => {
           return ( <Input key={cat.id} catId={cat.id} value={cat.name} className={index > 6 ? st.hideable : ''}/>)
         })}

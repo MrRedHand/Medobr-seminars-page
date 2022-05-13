@@ -70,4 +70,16 @@
   &:hover .events-count {
     color: #000;
   }
+
+  .events_count {
+    position: absolute;
+    left: 95px;
+    top: 50%;
+    transform: translate(0, -50%);
+    padding: 2px 12px;
+    border-radius: 22px;
+    border: 2px solid #63bfc6;
+    font-size: 13px;
+    line-height: 15px;
+  }
 }
