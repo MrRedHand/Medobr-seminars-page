@@ -11,11 +11,10 @@ const DatesFilter = ({ title }) => {
       <div className="filter" id="filter-dates">
         <div className="filter__heading">{title}</div>
         <div className="filter__labels-wrapper">
+          {/*{ ROOT - корень всего массива - 0 для каждого элемента это год, а 1 - это месяцы в каждом годе}*/}
           {startDates.map((root, index) => {
             const year = root[0];
             const months = root[1];
-
-            console.log("year", year, " months", months);
           })}
           <b>2022</b>
           <Input value={"Октябрь"} eventsCount={"123"} />
