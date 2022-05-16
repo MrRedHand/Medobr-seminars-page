@@ -21,8 +21,6 @@ export default function App() {
 
     //redux-thunk - вызов вынесенной функции
     fullDataIsWritten && dispatch(createStartData(fullData));
-
-    console.log(fullDataIsWritten);
   }, [fullDataIsWritten]);
 
   return (
