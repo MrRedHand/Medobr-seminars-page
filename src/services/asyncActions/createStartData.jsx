@@ -2,6 +2,7 @@ import {
     writeCatsAction,
     writeNmoVmpAction,
     writeNmoSmpAction,
+    writeDatesAction,
     sidebarDataAction}
     from "../reducers/seminarsFiltration";
 
@@ -38,10 +39,20 @@ export const createStartData = (fullData) => {
             })
         })
 
-        fullData.map(elem => {
-            let asd = elem.date
-            asd = asd.slice(3)
-            datesArray = [...datesArray, asd]
+        fullData.map((elem, index) => {
+            let [day, month, year] = elem.date.split('.').parseInt()
+
+            if (index > 10) {year++}
+
+            // if (!datesArray[year]) datesArray[year] = []
+            // if(!datesArray[year][month]) {
+            //     datesArray[year][month] = 1
+            // } else {
+            //     datesArray[year][month] +=1
+            // }
+
+            datesArray = [...datesArray, {year : year}]
+
         })
 
         console.log('datesArray', datesArray)
@@ -58,6 +69,7 @@ export const createStartData = (fullData) => {
         dispatch(writeCatsAction(catsArray))
         dispatch(writeNmoVmpAction(nmoVmpSpecsArray))
         dispatch(writeNmoSmpAction(nmoSmpSpecsArray))
+        dispatch(writeDatesAction(datesArray))
         dispatch(sidebarDataAction(true))
 
         //Метод удаления копий из массивов

@@ -42,7 +42,7 @@ export const seminarsFiltrationReducer = (state = initialState, action) => {
         case ADD_MONTHS_ARRAY:
             return {
                 ...state,
-                startMonths: [...state.startMonths, ...action.payload]
+                startMonths: action.payload
             }
         case  WRITE_FULL_DATA:
             return {
@@ -69,4 +69,5 @@ export const writeFullDataAction = (payload) => ({type : WRITE_FULL_DATA, payloa
 export const writeCatsAction = (payload) => ({type : ADD_CATEGORIES_ARRAY, payload});
 export const writeNmoVmpAction = (payload) => ({type : ADD_NMO_VMP_ARRAY, payload});
 export const writeNmoSmpAction = (payload) => ({type : ADD_NMO_SMP_ARRAY, payload});
+export const writeDatesAction = payload => ({type : ADD_MONTHS_ARRAY, payload})
 export const sidebarDataAction = (payload) => ({type : SIDEBAR_DATA_IS_READY, payload});
