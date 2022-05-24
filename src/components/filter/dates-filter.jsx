@@ -11,14 +11,18 @@ const DatesFilter = ({ title }) => {
       <div className="filter" id="filter-dates">
         <div className="filter__heading">{title}</div>
         <div className="filter__labels-wrapper">
-          {/* {
-            startDates.map(elem => {
-              <b>{elem.year}</b>
-              elem.map(month => {
-                return (<Input eventsCount={month}/>)
-              })
+          {
+            startDates.map((elem, index) => {
+              return (
+              <>
+                <b key={index + Math.random}>{elem.year}</b>
+                {elem.months.map((elem, index) => {
+                  return <Input key={index + Math.random} value={elem.name} eventsCount={elem.count}/>
+                })}
+              </>
+              )
             })
-          } */}
+          }
         </div>
         <button>
           <span className="folded-btn">Показать всё</span>

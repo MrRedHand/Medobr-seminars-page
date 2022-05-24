@@ -44,26 +44,39 @@ export const createStartData = (fullData) => {
 
       year = parseInt(year, 10)
 
-      const monthNames = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"]
+      index > 10 && year++
+      index > 20 && year++
+
+      const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+  "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
 
       const newYear = {
         'year': year,
-        'months' : []
+        'months' : monthNames.map(elem => {
+          return {'name' : elem, 'count' : 0}
+        })
       }
 
-      const newMonth = {
-        'name' : monthNames[month-1],
-        'count' : 0
-      }
+      // const newMonth = {
+      //   'name' : monthNames[month-1],
+      //   'count' : 0
+      // }
 
-      !datesArray.some(elem => {return elem['year'] === year}) && datesArray.push(newYear)
+      // console.log(newMonth.name)
+
+      !datesArray.some(elem => {return elem['year'] === year}) && (datesArray = [...datesArray, newYear])
       
-      datesArray.map(elem => {
-        !elem['months'].includes([monthNames[month-1]]) && elem['months'].push([monthNames[month-1]])
-        //!elem['months'].some(x => {return x[monthNames[month-1]] === [monthNames[month-1]]}) && elem['months'].push([monthNames[month-1]])
-        //!elem.some(x => {return x[monthName] === monthName}) && elem.push(monthInYear)
-      })
+      // datesArray.map(elem => {
+      //   elem.months = [...elem.months, newMonth]
+      //   if (elem.months.some(e => e.name !== newMonth.name)) {
+          
+      //   }
+
+      //   //!elem.months.includes(newMonth.name) && ()
+      //   //!elem.months.includes(newMonth) && elem['months'].push(newMonth)
+      //   //!elem['months'].some(x => {return x.newMonth}) && elem['months'].push(newMonth)
+      //   //!elem.some(x => {return x[monthName] === monthName}) && elem.push(monthInYear)
+      // })
 
     });
 
