@@ -17,7 +17,7 @@ const DatesFilter = ({ title }) => {
               <>
                 <b key={index + Math.random}>{elem.year}</b>
                 {elem.months.map((elem, index) => {
-                  return <Input key={index + Math.random} value={elem.name} eventsCount={elem.count}/>
+                  return elem.count > 0 && (<Input key={index + Math.random} value={elem.name} eventsCount={elem.count}/>)
                 })}
               </>
               )

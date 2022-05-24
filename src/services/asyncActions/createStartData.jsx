@@ -44,8 +44,7 @@ export const createStartData = (fullData) => {
 
       year = parseInt(year, 10)
 
-      index > 10 && year++
-      index > 20 && year++
+      month = parseInt(month, 10)
 
       const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
   "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
@@ -57,26 +56,11 @@ export const createStartData = (fullData) => {
         })
       }
 
-      // const newMonth = {
-      //   'name' : monthNames[month-1],
-      //   'count' : 0
-      // }
-
-      // console.log(newMonth.name)
-
       !datesArray.some(elem => {return elem['year'] === year}) && (datesArray = [...datesArray, newYear])
-      
-      // datesArray.map(elem => {
-      //   elem.months = [...elem.months, newMonth]
-      //   if (elem.months.some(e => e.name !== newMonth.name)) {
-          
-      //   }
 
-      //   //!elem.months.includes(newMonth.name) && ()
-      //   //!elem.months.includes(newMonth) && elem['months'].push(newMonth)
-      //   //!elem['months'].some(x => {return x.newMonth}) && elem['months'].push(newMonth)
-      //   //!elem.some(x => {return x[monthName] === monthName}) && elem.push(monthInYear)
-      // })
+      datesArray.map(elem => {
+        elem.year === year && elem.months[month-1].count++
+      })
 
     });
 
