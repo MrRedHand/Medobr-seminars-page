@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import st from "./filter.module.scss";
 import Input from "../input/input";
 import { useSelector } from "react-redux";
@@ -11,23 +11,14 @@ const DatesFilter = ({ title }) => {
       <div className="filter" id="filter-dates">
         <div className="filter__heading">{title}</div>
         <div className="filter__labels-wrapper">
-          {/*{ ROOT - корень всего массива - 0 для каждого элемента это год, а 1 - это месяцы в каждом годе}*/}
-
-          {startDates.map((root, index) => {
-            const year = root[0];
-            const months = root[1];
-
-            for (var key in months) {
-              console.log("key " + key + " has value " + months[key]);
-              return <Input value={key} eventsCount={months[key]} />;
-            }
-          })}
-          {/*<b>2022</b>*/}
-          {/*<Input value={"Октябрь"} eventsCount={"123"} />*/}
-          {/*<Input value={"Октябрь"} eventsCount={"123"} />*/}
-          {/*<Input value={"Октябрь"} eventsCount={"123"} />*/}
-          {/*<Input value={"Октябрь"} eventsCount={"123"} />*/}
-          {/*<b>2022</b>*/}
+          {/* {
+            startDates.map(elem => {
+              <b>{elem.year}</b>
+              elem.map(month => {
+                return (<Input eventsCount={month}/>)
+              })
+            })
+          } */}
         </div>
         <button>
           <span className="folded-btn">Показать всё</span>

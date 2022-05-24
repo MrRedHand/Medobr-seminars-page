@@ -11,7 +11,7 @@ export const createStartData = (fullData) => {
     let catsArray = [];
     let nmoVmpSpecsArray = [];
     let nmoSmpSpecsArray = [];
-    let datesArray = {};
+    let datesArray = [];
 
     //Ищу все категории в джейсоне
     fullData.map((elem) => {
@@ -38,26 +38,34 @@ export const createStartData = (fullData) => {
         });
     });
 
+
     fullData.map((elem, index) => {
       let [day, month, year] = elem.date.split(".");
 
-      year = parseInt(year, 10);
+      year = parseInt(year, 10)
 
-      index > 10 && year++;
+      const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"]
 
-      index > 15 && year++;
+      const newYear = {
+        'year': year,
+        'months' : []
+      }
 
-      !datesArray[year] && (datesArray[year] = {});
+      const newMonth = {
+        'name' : monthNames[month-1],
+        'count' : 0
+      }
 
-      !datesArray[year][month] && (datesArray[year][month] = 0);
+      !datesArray.some(elem => {return elem['year'] === year}) && datesArray.push(newYear)
+      
+      datesArray.map(elem => {
+        !elem['months'].includes([monthNames[month-1]]) && elem['months'].push([monthNames[month-1]])
+        //!elem['months'].some(x => {return x[monthNames[month-1]] === [monthNames[month-1]]}) && elem['months'].push([monthNames[month-1]])
+        //!elem.some(x => {return x[monthName] === monthName}) && elem.push(monthInYear)
+      })
 
-      datesArray[year][month] += 1;
     });
-
-    datesArray = Object.keys(datesArray).map((key) => [
-      Number(key),
-      datesArray[key],
-    ]);
 
     console.log("datesArraydatesArray", datesArray);
 
