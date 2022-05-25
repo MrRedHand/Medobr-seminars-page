@@ -1,14 +1,28 @@
 import React, { useEffect } from "react";
 import st from "./seminar-item-base.module.scss";
-import SeminarItemHeader from "./seminar-item-header";
-import SeminarItemFooter from "./seminar-item-footer";
+import SeminarWatchTag from "./seminar-watch-tag";
+import SeminarNmoTag from "./seminar-nmo-tag";
+import SeminarItemCats from "./seminar-items-cats";
+import SeminarItemNmoSpecs from "./seminar-item-nmo-specs";
+import SeminarItemSpeakers from "./seminar-item-speakers";
 
 const SeminarItemBase = (props) => {
 
   return (
     <div className={`${st.seminar_item} p-4 d-flex`}>
       
-      <SeminarItemHeader {...props}/>
+      <div className={st.seminar_item__header}>
+            <div className={st.seminar_item__date}>{props.date}</div>
+            <div className={st.seminar_item__day}>Пн</div>
+            
+            <SeminarWatchTag />
+
+            <SeminarItemCats {...props}/>
+            
+            <SeminarItemNmoSpecs/>
+
+            <SeminarNmoTag />
+      </div>
 
       <div className="seminar-item__body">
         <div className="seminar-item__title">
@@ -16,7 +30,15 @@ const SeminarItemBase = (props) => {
         </div>
       </div>
       
-      <SeminarItemFooter {...props} />
+      <div className="seminar-item__footer">
+          
+          <SeminarItemSpeakers {...props} />
+
+          <div className="seminar-item__cicle has-tooltip">
+              <div className="cicle__text max-round sm-btn">Часть цикла</div>
+              <div className="seminar-item__tooltip"></div>
+          </div>
+      </div>
 
       <div className="seminar-item__right-col">
         <div className="seminar-item__seminar-avatar">
