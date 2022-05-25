@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import st from "./seminar-item-base.module.scss";
 import SeminarWatchTag from "./seminar-watch-tag";
 import SeminarNmoTag from "./seminar-nmo-tag";
