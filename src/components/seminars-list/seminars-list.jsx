@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
-import SeminarItemBase from "../seminar-item-base/seminar-item-base";
-import SeminarItemSecondary from "../seminar-item-secondary/seminar-item-secondary";
+import SeminarItemBase from "../seminar-item/seminar-item-base";
+import SeminarItemSecondary from "../seminar-item/seminar-item-secondary";
 import SkeletonSeminarItem from "../skeleton-seminar-item";
 import {useSelector} from "react-redux";
 

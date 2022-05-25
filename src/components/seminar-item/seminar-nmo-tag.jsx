@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SeminarTag(props) {
+export default function SeminarNmoTag(props) {
     return (
 
         <div className="seminar-item__tags">

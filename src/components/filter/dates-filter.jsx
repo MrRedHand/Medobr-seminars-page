@@ -8,9 +8,9 @@ const DatesFilter = ({ title }) => {
 
   return (
     <>
-      <div className="filter" id="filter-dates">
-        <div className="filter__heading">{title}</div>
-        <div className="filter__labels-wrapper">
+      <div className={st.filter} id="filter-dates">
+      <div className={st.filter__heading}>{title}</div>
+        <div className={`${st.filter__labels_wrapper} mt-3 mb-3`}>
           {
             startDates.map((elem, index) => {
               return (

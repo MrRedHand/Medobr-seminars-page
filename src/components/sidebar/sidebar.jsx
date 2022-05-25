@@ -7,31 +7,16 @@ import SpecsFilter from "../filter/specs-filter";
 import { useDispatch, useSelector } from "react-redux";
 import DatesFilter from "../filter/dates-filter";
 
-export default function Sidebar({
-  cats,
-  types,
-  nmoSpecsVmp,
-  nmoSpecsSmp,
-  dates,
-}) {
+const Sidebar = () => {
+
   const { sidebarDataIsReady } = useSelector(
     (state) => state.seminarsFiltration
   );
 
-  const someRef = React.createRef();
-
-  useEffect(() => {
-    const si = document.querySelector(".sec");
-    //si.addEventListener('onchange', console.log('in'))
-    // console.log(si)
-    // console.log(someRef)
-  });
-
   return (
     <div className="sidebar-filters">
       <div className="sidebar-filters__heading">Семинары</div>
-      <input type="search" name="" id="" ref={someRef} className='sec'/>
-       <MainSearchInput /> 
+        <MainSearchInput/> 
 
       <div id="filters-wrap">
         {sidebarDataIsReady ? (
@@ -50,3 +35,5 @@ export default function Sidebar({
     </div>
   );
 }
+
+export default Sidebar
