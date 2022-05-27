@@ -9,6 +9,34 @@ html, body {
     color: $body_color; 
 }
 
+.font-14 {
+    font-size: 14px;
+}
+
+.font-16 {
+    font-size: 16px;
+}
+
+.font-18 {
+    font-size: 18px;
+}
+
+.font-20 {
+    font-size: 20px;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.font-grey {
+    color: #818181;
+}
+
+.font-black {
+    color: #2E2E2E;
+}
+
 .modal-active {
     overflow: hidden;
     margin-right: 15px;
@@ -122,80 +150,73 @@ html, body {
 
 /* NAV */
 
-.seminar-list__tabs-nav {
-    display: flex;
-    flex-direction: row;
+.seminars_list {
 
-    button {
-        display: block;
-        padding: 15px;
-        background: #F5F5F5;
-        border: 1px solid #EBEBEB;
-        border-bottom: 0;
-        box-sizing: border-box;
-        margin-right: -1px;
-        outline: none;
-    }
+    &__tabs_nav {
 
-    button.active {
-        background: #fff;
-    }
-
-    a {
-        margin-left: auto;
-        display: block;
-        padding: 15px;
-        color:#535353;
-        text-decoration: none;
-    }
-
-    @media (max-width: 600px) {
-        position: relative;
+        .tabBtn {
+            background: #F5F5F5;
+            border: 1px solid #EBEBEB;
+            border-bottom: 0;
+            box-sizing: border-box;
+            margin-right: -1px;
+            outline: none;
+        }
+    
+        .tabBtn:first-child {
+            border-radius: 6px 0 0;
+        }
+    
+        .tabBtn:last-of-type {
+            border-radius: 0 6px 0 0;
+        }
+    
+        .active {
+            background: #fff;
+        }
+    
         a {
-            position: absolute;
-            right: 15px;
-            top: -90%;
+            color:#535353;
+            text-decoration: none;
+        }
+    
+        @media (max-width: 600px) {
+            position: relative;
+            a {
+                position: absolute;
+                right: 15px;
+                top: -90%;
+            }
         }
     }
-}
 
-/* SEMINARS */
+    &__wrap {
+        border:1px solid #EBEBEB;
+    }
 
-.seminars-list__wrap {
-    border-left:1px solid #EBEBEB;
-    border-top:1px solid #EBEBEB;
-}
+    &__load_more {
+        background: #F5F5F5;
+        border-radius: 4px;
+        border:none;
+        outline: none;
+        text-align: center;
+        font-size: 16px;
+    }
 
-/* TABS */
+    &__tab {
+        visibility: hidden;
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+        transition: all linear 0.15s;
+    }
 
-.seminars-list__tab {
-    visibility: hidden;
-    opacity: 0;
-    height: 0;
-    overflow: hidden;
-    transition: all linear 0.15s;
-}
+    &__tab.active {
+        visibility: visible;
+        opacity: 1;
+        height: auto;
+    }
 
-.seminars-list__tab.active {
-    visibility: visible;
-    opacity: 1;
-    height: auto;
-}
-
-
-
-
-
-.seminar-list__load-more {
-    display: block;
-    background: #F5F5F5;
-    padding: 10px 40px;
-    border-radius: 4px;
-    margin: 40px auto;
-    border:none;
-    outline: none;
-    text-align: center;
-    font-size: 16px;
 }
 
 .has-tooltip {

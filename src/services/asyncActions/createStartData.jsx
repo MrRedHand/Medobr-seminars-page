@@ -6,6 +6,8 @@ import {
   sidebarDataAction,
 } from "../reducers/seminarsFiltration";
 
+import { monthNames } from "../getMonthName";
+
 export const createStartData = (fullData) => {
   return function (dispatch) {
     let catsArray = [];
@@ -45,9 +47,6 @@ export const createStartData = (fullData) => {
       year = parseInt(year, 10)
 
       month = parseInt(month, 10)
-
-      const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
-  "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]
 
       const newYear = {
         'year': year,

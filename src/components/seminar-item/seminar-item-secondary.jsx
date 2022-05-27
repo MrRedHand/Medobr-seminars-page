@@ -1,5 +1,4 @@
 import React from "react";
-import SeminarNmoTag from "./seminar-nmo-tag";
 
 export default function SeminarItemSecondary(props) {
     return (
@@ -22,7 +21,6 @@ export default function SeminarItemSecondary(props) {
                         </div>
                     </div>
 
-                    <SeminarNmoTag/>
                 </div>
 
                 <div className="seminar-item__title"><a href={"https://medobr.com" + props.url} >{props.title}</a></div>

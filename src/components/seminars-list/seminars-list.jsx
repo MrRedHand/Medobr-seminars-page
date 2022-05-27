@@ -25,15 +25,15 @@ export default function SeminarsList() {
     }
 
     return(
-        <div className="seminars-list has-tabs">
-            <div className="seminar-list__tabs-nav">
-              <button value="one" onClick={(e) => switchTab(e.target)} className={`${current.active === 'one' ? 'active' : ''} tabBtn`}>Запланировано 181 семинара</button>
-              <button value="two" onClick={(e) => switchTab(e.target)} className={`${current.active === 'two' ? 'active' : ''} tabBtn`}>5 выездных</button>
-              <button value="three" onClick={(e) => switchTab(e.target)} className={`${current.active === 'three' ? 'active' : ''} tabBtn`}>2 записи</button>
-              <a href="">Перейти в архив  </a>
+        <div className="seminars_list has-tabs">
+            <div className={`seminars_list__tabs_nav d-flex flex-lg-row`}>
+              <button value="one" onClick={(e) => switchTab(e.target)} className={`tabBtn ${current.active === 'one' ? 'active' : ''} p-3`}>Запланировано 181 семинара</button>
+              <button value="two" onClick={(e) => switchTab(e.target)} className={`tabBtn ${current.active === 'two' ? 'active' : ''} p-3`}>5 выездных</button>
+              <button value="three" onClick={(e) => switchTab(e.target)} className={`tabBtn ${current.active === 'three' ? 'active' : ''} p-3`}>2 записи</button>
+              <a href="" className="ms-auto d-block px-3 py-2 mb-auto mt-auto">Перейти в архив</a>
             </div>
 
-            <div className="seminars-list__wrap">
+            <div className="seminars_list__wrap">
                 <div className={`${current.active === 'one' ? 'active' : ''} seminars-list__tab`}>
                     <div className="base-seminars">
 
@@ -48,7 +48,7 @@ export default function SeminarsList() {
                             })
 
                         }
-                        <button className="seminar-list__load-more btn">Загрузить еще семинаров</button>
+                        <button className="seminars_list__load_more btn d-block m-auto px-5 py-3">Загрузить еще семинаров</button>
                     </div> 
 
                     <div className="secondary-seminars">
