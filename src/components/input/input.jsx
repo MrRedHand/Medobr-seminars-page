@@ -13,44 +13,52 @@ const Input = ({ catId, value, className, eventsCount, selected }) => {
 
   const inputRef = useRef()
 
+  let apiRequestSended = false;
+
   const toggleCheckbox = () => {
     setChecked(!checked)
-    // console.log(inputRef.current.checked)
-
-    // if (checked) {
-    //   if (selected.filter(e => e === catId).length > 0) {
-    //     console.log(catId + ' уже есть')
-    //     return
-    //   } else {
-    //     console.log(catId + ' отсутствует')
-    //     dispatch(categorySelected(catId))
-    //   }
-
-    //   console.log(selected)
-    // } else {
-    //   console.log(selected)
-    // }
   }
 
   useEffect(() => {
 
     if (checked) {
       if (selected.filter(e => e === catId).length > 0) {
-        console.log(catId + ' уже есть')
+        return
       } else {
-        console.log(catId + ' отсутствует')
         dispatch(categorySelected(catId))
-        console.log(catId + ' добавлена')
       }
-      console.log('текущий массив категорий ', selected)
     } else {
       if (selected.filter(e => e === catId).length > 0) {
-        console.log('Есть совпадения')
         dispatch(categoryRemoved(catId))
       }
-      console.log('текущий массив категорий ', selected)
     }
-  }, [checked, selected])
+
+    if (!apiRequestSended) {
+
+      fetch('https://medobr.com/seminar/json.php?only_new=Y', {
+        method: 'POST',
+        body: JSON.stringify(selected)
+      })
+            .then((response) => {
+                if (response.ok) {
+                    console.log(response.json())
+                    return response.json();
+                } else {
+                    return Promise.reject(`Ошибка ${response.status}`);
+                }
+            })
+            .then((data) => {
+                console.log(data)
+            })
+            .catch((error) => {
+                console.error(error)
+            });
+
+      apiRequestSended = true;
+    }
+
+    console.log(JSON.stringify({'cats':[...selected]}))
+  }, [checked, selected, apiRequestSended])
 
   return (
     <label
