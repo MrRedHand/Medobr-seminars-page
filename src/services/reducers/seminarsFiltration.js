@@ -20,6 +20,12 @@ const initialState = {
   fullData: [],
   fullDataGotErrors: false,
   fullDataIsWritten: false,
+
+  selectedCategories : {},
+  selectedTypes : {},
+  selectedSmpSpecs : {},
+  selectedVmpSpecs : {},
+  selectedMonths : {}
 };
 
 export const seminarsFiltrationReducer = (state = initialState, action) => {
