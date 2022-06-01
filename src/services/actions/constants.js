@@ -12,14 +12,16 @@ export const WRITE_FULL_DATA = 'WRITE_FULL_DATA' //Весь джейсон, по
 export const FIRST_LOADING_IS_READY = 'FIRST_LOADING_IS_READY'; //Показываю скелетон до тех пор, пока не станет TRUE
 
 //Поведение фильтров
-export const CATEGORY_CHECKED = 'CATEGORY_CHECKED';
-export const CATEGORY_UNCHECKED = 'CATEGORY_UNCHECKED';
-export const TYPE_CHECKED = 'TYPE_CHECKED';
-export const TYPE_UNCHECKED = 'TYPE_UNCHECKED';
-export const NMO_VMP_CHECKED = 'NMO_VMP_CHECKED';
-export const NMO_VMP_UNCHECKED = 'NMO_VMP_UNCHECKED';
-export const NMO_SMP_CHECKED = 'NMO_SMP_CHECKED';
-export const NMO_SMP_UNCHECKED = 'NMO_SMP_UNCHECKED';
+export const CATEGORY_SELECTED = 'CATEGORY_SELECTED';
+export const CATEGORY_REMOVED = 'CATEGORY_REMOVED';
+export const TYPE_SELECTED = 'TYPE_SELECTED';
+export const TYPE_REMOVED = 'TYPE_REMOVED';
+export const NMO_VMP_SELECTED = 'NMO_VMP_SELECTED';
+export const NMO_VMP_REMOVED = 'NMO_VMP_REMOVED';
+export const NMO_SMP_SELECTED = 'NMO_SMP_SELECTED';
+export const NMO_SMP_REMOVED = 'NMO_SMP_REMOVED';
+export const DATES_SELECTED = 'DATES_SELECTED';
+export const DATES_REMOVED = 'DATES_REMOVED';
 export const CLEAR_FILTER = 'CLEAR_FILTER';
 
 //Получение полного джейсона

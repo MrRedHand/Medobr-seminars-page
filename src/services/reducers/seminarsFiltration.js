@@ -7,6 +7,8 @@ import {
   FIRST_LOADING_IS_READY,
   GOT_ERRORS_DATA_IS_NOT_LOADED,
   SIDEBAR_DATA_IS_READY,
+  CATEGORY_SELECTED,
+  CATEGORY_REMOVED,
 } from "../actions/constants";
 
 const initialState = {
@@ -21,7 +23,7 @@ const initialState = {
   fullDataGotErrors: false,
   fullDataIsWritten: false,
 
-  selectedCategories : {},
+  selectedCategories : [],
   selectedTypes : {},
   selectedSmpSpecs : {},
   selectedVmpSpecs : {},
@@ -66,6 +68,16 @@ export const seminarsFiltrationReducer = (state = initialState, action) => {
         ...state,
         sidebarDataIsReady: true,
       };
+    case CATEGORY_SELECTED :
+      return {
+        ...state,
+        selectedCategories : [...state.selectedCategories, action.payload]
+      }
+    case CATEGORY_REMOVED : 
+      return {
+        ...state,
+        selectedCategories : state.selectedCategories.filter(e => e.name === action.payload)
+      }    
     default:
       return state;
   }

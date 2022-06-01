@@ -24,13 +24,13 @@ const Sidebar = () => {
         ) : (
           <SkeletonFilterItem />
         )}
-        {sidebarDataIsReady ? (
+        {/* {sidebarDataIsReady ? (
           <SpecsFilter title={"Выбор специальности с НМО"} />
         ) : (
           <SkeletonFilterItem />
         )}
 
-        <DatesFilter title={'Календарь'}/>
+        <DatesFilter title={'Календарь'}/> */}
       </div>
     </div>
   );
