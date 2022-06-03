@@ -16,8 +16,8 @@ const Input = ({ catId, value, className, eventsCount, selected, isSmpInput = fa
   let dateString = ''
 
   if (year !== null && monthIndex !== null) {
-    dateString = `${year}.${monthIndex}`
-    console.log(dateString)
+    dateString = year + '.' + monthIndex 
+    dateString = Number(dateString)
   }
 
   const toggleCheckbox = () => {
@@ -47,12 +47,10 @@ const Input = ({ catId, value, className, eventsCount, selected, isSmpInput = fa
       if (year !== null) {
         if (selected.filter(e => e === dateString).length > 0) {
           dispatch(dateRemoved(dateString))
-          console.log('запрос на удаление даты')
         }
       } else {
         if (selected.filter(e => e === catId).length > 0) {
           dispatch(categoryRemoved(catId))
-          console.log('запрос на удаление категории')
         }
       }
       

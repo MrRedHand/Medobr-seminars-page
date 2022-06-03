@@ -78,7 +78,7 @@ export const seminarsFiltrationReducer = (state = initialState, action) => {
     case CATEGORY_REMOVED : 
       return {
         ...state,
-        selectedCategories : state.selectedCategories.filter(e => e.name === action.payload)
+        selectedCategories : [...state.selectedCategories.filter(e => e.name === action.payload)]
       }
     case DATE_SELECTED :
       return {
