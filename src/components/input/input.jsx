@@ -2,10 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import st from "./input.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { categoryRemoved, categorySelected, dateRemoved, dateSelected } from "../../services/actions/filtration-actions/filtrationActions";
+import { requestSeminars } from "../../services/asyncActions/request-filtered-seminars";
 
 const Input = ({ catId, value, className, eventsCount, selected, isSmpInput = false, isVmpInput = false, year = null, monthIndex = null}) => {
 
-  const { fullDataIsWritten } = useSelector(state => state.seminarsFiltration)
+  const { fullDataIsWritten, selectedCategories, selectedSmpSpecs, selectedVmpSpecs, selectedDates, selectedTypes } = useSelector(state => state.seminarsFiltration)
 
   const dispatch = useDispatch();
 
@@ -42,7 +43,7 @@ const Input = ({ catId, value, className, eventsCount, selected, isSmpInput = fa
         }
       }
       
-      
+      requestSeminars(selectedCategories, selectedSmpSpecs, selectedVmpSpecs, selectedDates, selectedTypes)
     } else {
       if (year !== null) {
         if (selected.filter(e => e === dateString).length > 0) {
@@ -53,7 +54,7 @@ const Input = ({ catId, value, className, eventsCount, selected, isSmpInput = fa
           dispatch(categoryRemoved(catId))
         }
       }
-      
+      requestSeminars(selectedCategories, selectedSmpSpecs, selectedVmpSpecs, selectedDates, selectedTypes)
     }
 
     

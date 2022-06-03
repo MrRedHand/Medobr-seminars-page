@@ -1,19 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { filteredDataFailed, filteredDataRequest, filteredDataSuccess } from "../actions/filtration-request-actions/filtration-request-actions";
-
-const {selectedCategories, selectedSmpSpecs, selectedVmpSpecs, selectedDates, selectedTypes} = useSelector(
-    (state) => state.seminarsFiltration
-  );
 
 const dispatch = useDispatch()  
 
-export const requestSeminars = () => {
+export const requestSeminars = filters => {
 
     dispatch(filteredDataRequest())
 
     fetch('https://medobr.com/seminar/json.php', {
         method: 'POST',
-        body: JSON.stringify({selectedCategories, selectedTypes, selectedSmpSpecs, selectedVmpSpecs, selectedDates})
+        body: JSON.stringify({filters})
       })
         .then((response) => {
             if (response.ok) {
@@ -23,12 +19,16 @@ export const requestSeminars = () => {
             }
         })
         .then((data) => {
-            dispatch(filteredDataSuccess(data))
-            console.log('data', data)
+            console.log('дата по фильтрованным семинарам получена')
+            setTimeout(() => {
+                console.log('таймаут отработал и теперь дата перезаписана')
+                dispatch(filteredDataSuccess(data))
+            }, 3500)
+            
         })
         .catch((error) => {
             dispatch(filteredDataFailed())
             console.error(error)
         });
-    console.log(JSON.stringify({selectedCategories, selectedSmpSpecs, selectedVmpSpecs, selectedDates}))
+    console.log(JSON.stringify({filters}))
   }
