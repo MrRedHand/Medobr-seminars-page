@@ -87,6 +87,7 @@ export const seminarsFiltrationReducer = (state = initialState, action) => {
       }
     case DATE_REMOVED : 
       return {
+        ...state,
         selectedDates : state.selectedDates.filter(e => e === action.payload)
       }      
     default:

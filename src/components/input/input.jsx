@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import st from "./input.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { categoryRemoved, categorySelected, dateSelected } from "../../services/actions/filtration-actions/filtrationActions";
+import { categoryRemoved, categorySelected, dateRemoved, dateSelected } from "../../services/actions/filtration-actions/filtrationActions";
 
 const Input = ({ catId, value, className, eventsCount, selected, isSmpInput = false, isVmpInput = false, year = null, monthIndex = null}) => {
 
@@ -44,9 +44,18 @@ const Input = ({ catId, value, className, eventsCount, selected, isSmpInput = fa
       
       
     } else {
-      if (selected.filter(e => e === catId).length > 0) {
-        dispatch(categoryRemoved(catId))
+      if (year !== null) {
+        if (selected.filter(e => e === dateString).length > 0) {
+          dispatch(dateRemoved(dateString))
+          console.log('запрос на удаление даты')
+        }
+      } else {
+        if (selected.filter(e => e === catId).length > 0) {
+          dispatch(categoryRemoved(catId))
+          console.log('запрос на удаление категории')
+        }
       }
+      
     }
 
     

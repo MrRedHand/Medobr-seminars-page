@@ -42,7 +42,6 @@ export default function App() {
             .catch((error) => {
                 console.error(error)
             });
-            let cats
     console.log(JSON.stringify({selectedCategories, selectedSmpSpecs, selectedVmpSpecs, selectedDates}))
   }
 
