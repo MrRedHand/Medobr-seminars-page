@@ -28,9 +28,9 @@ const Sidebar = () => {
           <SpecsFilter title={"Выбор специальности с НМО"} />
         ) : (
           <SkeletonFilterItem />
-        )}
+        )} */
 
-        <DatesFilter title={'Календарь'}/> */}
+        <DatesFilter title={'Календарь'}/>}
       </div>
     </div>
   );

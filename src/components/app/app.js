@@ -10,7 +10,7 @@ import Header from "../header/header";
 export default function App() {
   const dispatch = useDispatch();
 
-  const { fullData, fullDataIsWritten } = useSelector(
+  const { fullData, fullDataIsWritten , selectedCategories, selectedSmpSpecs, selectedVmpSpecs, selectedDates} = useSelector(
     (state) => state.seminarsFiltration
   );
 
@@ -23,12 +23,36 @@ export default function App() {
     fullDataIsWritten && dispatch(createStartData(fullData));
   }, [fullDataIsWritten]);
 
+  const request = () => {
+    fetch('https://medobr.com/seminar/json.php?only_new=Y', {
+        method: 'POST',
+        body: JSON.stringify({selectedCategories, selectedSmpSpecs, selectedVmpSpecs, selectedDates})
+      })
+            .then((response) => {
+                if (response.ok) {
+                    console.log(response.json())
+                    return response.json();
+                } else {
+                    return Promise.reject(`Ошибка ${response.status}`);
+                }
+            })
+            .then((data) => {
+                console.log(data)
+            })
+            .catch((error) => {
+                console.error(error)
+            });
+            let cats
+    console.log(JSON.stringify({selectedCategories, selectedSmpSpecs, selectedVmpSpecs, selectedDates}))
+  }
+
   return (
     <>
       <Header />
       <div className="container seminars-list-page">
         <div className="row">
           <div className="col-lg-3">
+            <button onClick={() => request()}>Запрос</button>
             <Sidebar />
           </div>
           <div className="col-lg-9">

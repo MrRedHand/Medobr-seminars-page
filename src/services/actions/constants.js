@@ -20,8 +20,8 @@ export const NMO_VMP_SELECTED = 'NMO_VMP_SELECTED';
 export const NMO_VMP_REMOVED = 'NMO_VMP_REMOVED';
 export const NMO_SMP_SELECTED = 'NMO_SMP_SELECTED';
 export const NMO_SMP_REMOVED = 'NMO_SMP_REMOVED';
-export const DATES_SELECTED = 'DATES_SELECTED';
-export const DATES_REMOVED = 'DATES_REMOVED';
+export const DATE_SELECTED = 'DATES_SELECTED';
+export const DATE_REMOVED = 'DATES_REMOVED';
 export const CLEAR_FILTER = 'CLEAR_FILTER';
 
 //Получение полного джейсона

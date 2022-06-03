@@ -9,6 +9,8 @@ import {
   SIDEBAR_DATA_IS_READY,
   CATEGORY_SELECTED,
   CATEGORY_REMOVED,
+  DATE_SELECTED,
+  DATE_REMOVED,
 } from "../actions/constants";
 
 const initialState = {
@@ -24,10 +26,10 @@ const initialState = {
   fullDataIsWritten: false,
 
   selectedCategories : [],
-  selectedTypes : {},
-  selectedSmpSpecs : {},
-  selectedVmpSpecs : {},
-  selectedMonths : {}
+  selectedTypes : [],
+  selectedSmpSpecs : [],
+  selectedVmpSpecs : [],
+  selectedDates : [],
 };
 
 export const seminarsFiltrationReducer = (state = initialState, action) => {
@@ -77,7 +79,16 @@ export const seminarsFiltrationReducer = (state = initialState, action) => {
       return {
         ...state,
         selectedCategories : state.selectedCategories.filter(e => e.name === action.payload)
-      }    
+      }
+    case DATE_SELECTED :
+      return {
+        ...state,
+        selectedDates :  [...state.selectedDates, action.payload]
+      }
+    case DATE_REMOVED : 
+      return {
+        selectedDates : state.selectedDates.filter(e => e === action.payload)
+      }      
     default:
       return state;
   }

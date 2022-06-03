@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import st from "./input.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { categoryRemoved, categorySelected } from "../../services/actions/filtration-actions/filtrationActions";
+import { categoryRemoved, categorySelected, dateSelected } from "../../services/actions/filtration-actions/filtrationActions";
 
-const Input = ({ catId, value, className, eventsCount, selected }) => {
+const Input = ({ catId, value, className, eventsCount, selected, isSmpInput = false, isVmpInput = false, year = null, monthIndex = null}) => {
 
   const { fullDataIsWritten } = useSelector(state => state.seminarsFiltration)
 
@@ -13,7 +13,12 @@ const Input = ({ catId, value, className, eventsCount, selected }) => {
 
   const inputRef = useRef()
 
-  let apiRequestSended = false;
+  let dateString = ''
+
+  if (year !== null && monthIndex !== null) {
+    dateString = `${year}.${monthIndex}`
+    console.log(dateString)
+  }
 
   const toggleCheckbox = () => {
     setChecked(!checked)
@@ -22,43 +27,30 @@ const Input = ({ catId, value, className, eventsCount, selected }) => {
   useEffect(() => {
 
     if (checked) {
-      if (selected.filter(e => e === catId).length > 0) {
-        return
+
+      if (year !== null) {
+        if (selected.filter(e => e === dateString).length > 0) {
+          return
+        } else {
+          dispatch(dateSelected(dateString))
+        }
       } else {
-        dispatch(categorySelected(catId))
+        if (selected.filter(e => e === catId).length > 0) {
+          return
+        } else {
+          dispatch(categorySelected(catId))
+        }
       }
+      
+      
     } else {
       if (selected.filter(e => e === catId).length > 0) {
         dispatch(categoryRemoved(catId))
       }
     }
 
-    if (!apiRequestSended) {
-
-      fetch('https://medobr.com/seminar/json.php?only_new=Y', {
-        method: 'POST',
-        body: JSON.stringify(selected)
-      })
-            .then((response) => {
-                if (response.ok) {
-                    console.log(response.json())
-                    return response.json();
-                } else {
-                    return Promise.reject(`Ошибка ${response.status}`);
-                }
-            })
-            .then((data) => {
-                console.log(data)
-            })
-            .catch((error) => {
-                console.error(error)
-            });
-
-      apiRequestSended = true;
-    }
-
-    console.log(JSON.stringify({'cats':[...selected]}))
-  }, [checked, selected, apiRequestSended])
+    
+  }, [checked, selected])
 
   return (
     <label
