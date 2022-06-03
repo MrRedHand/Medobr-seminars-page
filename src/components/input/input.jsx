@@ -42,8 +42,7 @@ const Input = ({ catId, value, className, eventsCount, selected, isSmpInput = fa
           dispatch(categorySelected(catId))
         }
       }
-      
-      requestSeminars(selectedCategories, selectedSmpSpecs, selectedVmpSpecs, selectedDates, selectedTypes)
+
     } else {
       if (year !== null) {
         if (selected.filter(e => e === dateString).length > 0) {
@@ -54,7 +53,6 @@ const Input = ({ catId, value, className, eventsCount, selected, isSmpInput = fa
           dispatch(categoryRemoved(catId))
         }
       }
-      requestSeminars(selectedCategories, selectedSmpSpecs, selectedVmpSpecs, selectedDates, selectedTypes)
     }
 
     

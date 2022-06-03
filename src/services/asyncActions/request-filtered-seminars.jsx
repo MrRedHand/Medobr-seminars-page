@@ -1,7 +1,5 @@
 import { useDispatch } from "react-redux";
-import { filteredDataFailed, filteredDataRequest, filteredDataSuccess } from "../actions/filtration-request-actions/filtration-request-actions";
-
-const dispatch = useDispatch()  
+import { filteredDataFailed, filteredDataRequest, filteredDataSuccess } from "../actions/filtration-request-actions/filtration-request-actions"; 
 
 export const requestSeminars = filters => {
 
