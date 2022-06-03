@@ -11,7 +11,7 @@ const em = [0,0,0,0,0,0,0,0]
 
 export default function SeminarsList() {
 
-    const {fullData, fullDataIsWritten} = useSelector(state => state.seminarsFiltration)
+    const {fullData, fullDataIsWritten, filterIsActive} = useSelector(state => state.seminarsFiltration)
 
     const [current, setTab] = useState({
         active : 'one'
@@ -36,7 +36,6 @@ export default function SeminarsList() {
             <div className="seminars_list__wrap">
                 <div className={`${current.active === 'one' ? 'active' : ''} seminars-list__tab`}>
                     <div className="base-seminars">
-
                         {
                             fullDataIsWritten
                             ?  //отображаю  10 семинаров

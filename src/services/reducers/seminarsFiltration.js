@@ -25,6 +25,10 @@ const initialState = {
   fullDataGotErrors: false,
   fullDataIsWritten: false,
 
+  filteredSeminarsRequested : false,
+  filterIsActive : false,
+  filteredData : [],
+
   selectedCategories : [],
   selectedTypes : [],
   selectedSmpSpecs : [],
@@ -79,7 +83,7 @@ export const seminarsFiltrationReducer = (state = initialState, action) => {
     console.log('selectedCategories', state.selectedCategories)
       return {
         ...state,
-        selectedCategories : state.selectedCategories.filter(e => e.name === action.payload)
+        selectedCategories : state.selectedCategories.filter(id => id.name === action.payload)
       }
     case DATE_SELECTED :
       return {
@@ -90,7 +94,7 @@ export const seminarsFiltrationReducer = (state = initialState, action) => {
     console.log('state.selectedDates', state.selectedDates)
       return {
         ...state,
-        selectedDates : state.selectedDates.filter(e => e.name === action.payload)
+        selectedDates : state.selectedDates.filter(date => date.name === action.payload)
       }      
     default:
       return state;
