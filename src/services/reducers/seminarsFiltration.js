@@ -76,9 +76,10 @@ export const seminarsFiltrationReducer = (state = initialState, action) => {
         selectedCategories : [...state.selectedCategories, action.payload]
       }
     case CATEGORY_REMOVED : 
+    console.log('selectedCategories', state.selectedCategories)
       return {
         ...state,
-        selectedCategories : [...state.selectedCategories.filter(e => e.name === action.payload)]
+        selectedCategories : state.selectedCategories.filter(e => e.name === action.payload)
       }
     case DATE_SELECTED :
       return {
@@ -86,9 +87,10 @@ export const seminarsFiltrationReducer = (state = initialState, action) => {
         selectedDates :  [...state.selectedDates, action.payload]
       }
     case DATE_REMOVED : 
+    console.log('state.selectedDates', state.selectedDates)
       return {
         ...state,
-        selectedDates : state.selectedDates.filter(e => e === action.payload)
+        selectedDates : state.selectedDates.filter(e => e.name === action.payload)
       }      
     default:
       return state;

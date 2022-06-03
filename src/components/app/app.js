@@ -24,20 +24,19 @@ export default function App() {
   }, [fullDataIsWritten]);
 
   const request = () => {
-    fetch('https://medobr.com/seminar/json.php?only_new=Y', {
+    fetch('https://medobr.com/seminar/json.php', {
         method: 'POST',
         body: JSON.stringify({selectedCategories, selectedSmpSpecs, selectedVmpSpecs, selectedDates})
       })
             .then((response) => {
                 if (response.ok) {
-                    console.log(response.json())
-                    return response.json();
+                  return response.json();
                 } else {
                     return Promise.reject(`Ошибка ${response.status}`);
                 }
             })
             .then((data) => {
-                console.log(data)
+                console.log('data', data)
             })
             .catch((error) => {
                 console.error(error)
